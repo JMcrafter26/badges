@@ -154,6 +154,7 @@ const builtWithAssets = [
 	'vite',
 	'vue',
 	'vuejs',
+	'wails',
 	'webassembly',
 	'wordpress'
 ] as const;
