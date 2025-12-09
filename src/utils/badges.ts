@@ -44,6 +44,7 @@ const availableAssets = [
 	'itch-io',
 	'jitpack', 
 	'jwpepper', 
+	'livecodes',
 	'mac-app-store', 
 	'maven-central', 
 	'modrinth', 
