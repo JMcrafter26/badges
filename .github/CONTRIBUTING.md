@@ -1,3 +1,3 @@
 # Contributing
 
-Please see the [contributing section](https://badges.penpow.dev/contributing) on the website.
+Please see the [contributing section](https://jmcrafter26.github.io/devins-badges/contributing) on the website.

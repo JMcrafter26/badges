@@ -1,0 +1,79 @@
+---
+// SearchBar component for filtering badges
+---
+
+<div class="search-container mb-8 sticky top-0 z-10 bg-white dark:bg-zinc-900 pb-4 pt-2 -mx-4 px-4 shadow-sm">
+	<div class="max-w-5xl mx-auto">
+		<h2 class="text-zinc-800 dark:text-zinc-100 mb-4 text-2xl font-bold">Search & Filter</h2>
+		
+		<div class="search-wrapper">
+			<input 
+				type="text" 
+				id="badge-search" 
+				placeholder="Search badges by name..." 
+				class="w-full px-4 py-3 text-base border-2 border-zinc-300 dark:border-zinc-600 rounded-lg 
+				       bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100
+				       focus:outline-none focus:border-blue-500 dark:focus:border-blue-400
+				       placeholder-zinc-400 dark:placeholder-zinc-500 shadow-sm"
+			/>
+			
+			<div class="mt-3 flex flex-wrap gap-2" id="category-filters">
+				<button 
+					data-category="all" 
+					class="category-filter active px-3 py-1.5 rounded-md font-medium text-sm
+					       bg-blue-500 text-white hover:bg-blue-600
+					       transition-colors duration-200"
+				>
+					All
+				</button>
+			</div>
+			
+			<div class="mt-2 text-sm font-medium text-zinc-600 dark:text-zinc-400">
+				<span id="result-count">0</span> badges found
+			</div>
+		</div>
+	</div>
+</div>
+
+<style>
+	.search-container {
+		backdrop-filter: blur(8px);
+		border-bottom: 1px solid rgb(229 231 235);
+	}
+	
+	.dark .search-container {
+		border-bottom-color: rgb(63 63 70);
+	}
+	
+	.category-filter {
+		background-color: rgb(229 231 235);
+		color: rgb(39 39 42);
+		border: 1px solid rgb(212 212 216);
+	}
+	
+	.dark .category-filter {
+		background-color: rgb(63 63 70);
+		color: rgb(250 250 250);
+		border-color: rgb(82 82 91);
+	}
+	
+	.category-filter:hover {
+		background-color: rgb(209 213 219);
+		transform: translateY(-1px);
+	}
+	
+	.dark .category-filter:hover {
+		background-color: rgb(82 82 91);
+	}
+	
+	.category-filter.active {
+		background-color: rgb(59 130 246);
+		color: white;
+		border-color: rgb(37 99 235);
+		box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);
+	}
+	
+	.category-filter.active:hover {
+		background-color: rgb(37 99 235);
+	}
+</style>

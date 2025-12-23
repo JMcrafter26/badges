@@ -100,13 +100,62 @@ const siteTitle = `${title} ${titleSeparator} ${siteConfig.title}`;
 			<Icon class="dark:hidden" name="heroicons:moon" width={48} height={48} />
 			<Icon class="hidden dark:block" name="heroicons:sun" width={48} height={48} />
 		</button>
+		
+		<!-- Scroll to Top Button -->
+		<button 
+			id="scroll-to-top" 
+			class="fixed bottom-6 right-6 h-12 w-12 bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 text-white rounded-full shadow-lg opacity-0 pointer-events-none transition-all duration-300 z-50 flex items-center justify-center"
+			aria-label="Scroll to top"
+		>
+			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
+				<path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+			</svg>
+		</button>
+		
 		<div class="max-w-3xl px-8 mt-8 lg:mt-24 mx-auto">
 			<Header />
 			<main id="main">
 				<slot />
 			</main>
 			<Footer />
-		</div>		
+		</div>
+		
+		<script>
+			// Scroll to top button functionality
+			function setupScrollToTop() {
+				const scrollBtn = document.getElementById('scroll-to-top');
+				if(!scrollBtn) return;
+				
+				// Show/hide button based on scroll position
+				function toggleScrollButton() {
+					if(window.scrollY > 300) {
+						scrollBtn.style.opacity = '1';
+						scrollBtn.style.pointerEvents = 'auto';
+					} else {
+						scrollBtn.style.opacity = '0';
+						scrollBtn.style.pointerEvents = 'none';
+					}
+				}
+				
+				// Scroll to top on click
+				scrollBtn.addEventListener('click', () => {
+					window.scrollTo({
+						top: 0,
+						behavior: 'smooth'
+					});
+				});
+				
+				// Listen to scroll events
+				window.addEventListener('scroll', toggleScrollButton);
+				toggleScrollButton(); // Initial check
+			}
+			
+			// Run on initial load
+			document.addEventListener('DOMContentLoaded', setupScrollToTop);
+			
+			// Re-run after page transitions
+			document.addEventListener('astro:after-swap', setupScrollToTop);
+		</script>
 	</body>
 </html>
 

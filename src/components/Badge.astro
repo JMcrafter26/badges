@@ -30,21 +30,24 @@ if(size.endsWith("minimal")) {
 const { default: badge } = await import(`../assets/${category}/${slug}/${size}.svg`);
 
 const baseUrl = `/badges/${originalCategory}/${slug}/${size}`;
+const cdnBaseUrl = `https://cdn.jsdelivr.net/gh/JMcrafter26/devins-badges@main/src/assets/${originalCategory}/${slug}`;
 ---
 
-<div class="my-4 grid grid-cols-1">
+<div class="my-4 grid grid-cols-1 badge-container" data-cdn-url={`${cdnBaseUrl}/${size}.svg`} data-local-base={baseUrl}>
 	<Image src={badge} alt={name} height={heights[size]} class="mb-3 max-h-16 place-self-center pointer-events-none"  />
 	<p class="text-center">
 		<b class="text-xl text-zinc-900 dark:text-zinc-100 ">{name}</b>
 		<br/>
-		<a href={`${baseUrl}.${format[0]}`} class="text-blue-500 hover:text-blue-600">
-			<b class="text-md">{format[0].toUpperCase()}</b>
-		</a>
+		<button class="url-copy-btn text-blue-500 hover:text-blue-600 cursor-pointer" data-format="svg">
+			<b class="text-md">SVG</b>
+		</button>
 		{format.slice(1).filter(format => format !== 'jpg').map(format => (
-			<span>•</span>
-			<a href={`${baseUrl}.${format}`} class="text-blue-500 hover:text-blue-600">
-				<b class="text-md">{format.toUpperCase()}</b>
-			</a>
+			<>
+				<span>•</span>
+				<button class="url-copy-btn text-blue-500 hover:text-blue-600 cursor-pointer" data-format={format}>
+					<b class="text-md">{format.toUpperCase()}</b>
+				</button>
+			</>
 		))}
 	</p>
 </div>

@@ -1,6 +1,7 @@
 ---
 import PageLayout from "../../../layouts/Base.astro";
 import Badge from "../../../components/Badge.astro";
+import SearchBar from "../../../components/SearchBar.astro";
 import { groupBy } from "../../../utils/arrays";
 import { Prism } from '@astrojs/prism';
 import { size as sizes, badges, heights } from "../../../utils/badges";
@@ -28,65 +29,74 @@ const filteredBadges = groupBy<BadgeDescriptor[], Category>(groupBy(badges, badg
 
 <PageLayout meta={{ title: `${capitalizeEachWord(size)} Badges` }}>
 	<section>
-		<div class="flex items-center">
-			<h2 class="text-zinc-800 dark:text-zinc-100 mt-4 mb-3 text-3xl font-bold">Usage</h2>
-			<div class="h-[1px] grow bg-black/10 dark:bg-white/40 mt-3 mx-4" />
-		</div>
-		<p class="mb-4 text-lg">
-			The badges come in both a multitude of formats. The <code class="inline">.svg</code> format is preferred in all situations apart from where it is unsupported by the host platform.
-			
-			<br/>
-			<br/>
-
-			By default these badges are <code class="inline">{heights[size]}px</code> tall.
-
-			<br/>
-			<br/>
-			
-			You can obtain the URL for any badge by clicking on the button beneath its name.
-			<Prism lang="html" code={'<!-- HTML -->\n<img alt="badge name" src="https://badges.penpow.dev/badges/[category]/[badge]/[size].{png,svg}">'} />
-			<Prism lang="md" code={'<!-- Markdown -->\n![badge name]("https://badges.penpow.dev/badges/[category]/[badge]/[size].{png,svg}")'} />
-		</p>
+		<SearchBar />
 	</section>
-	<section>
-		<div class="flex items-center">
-			<h2 class="text-zinc-800 dark:text-zinc-100 mt-4 mb-3 text-3xl font-bold">Table of Contents</h2>
-			<div class="h-[1px] grow bg-black/10 dark:bg-white/40 mt-3 mx-4" />
+	
+	<!-- CDN Toggle -->
+	<section class="mb-6">
+		<div class="flex items-center justify-between p-4 bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-300 dark:border-zinc-700 rounded-lg">
+			<div>
+				<h3 class="text-base font-bold text-zinc-800 dark:text-zinc-100">Use CDN URLs</h3>
+				<p class="text-sm text-zinc-600 dark:text-zinc-400 mt-0.5">jsdelivr CDN for SVG format (no custom sizes)</p>
+			</div>
+			<label class="relative inline-flex items-center cursor-pointer">
+				<input type="checkbox" id="cdn-toggle" class="sr-only peer" checked>
+				<div class="w-11 h-6 bg-zinc-300 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-zinc-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-zinc-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-zinc-600 peer-checked:bg-blue-600"></div>
+			</label>
 		</div>
-		<p class="mb-4 text-lg">
-			{Object.keys(categories).map((key) => (
-				<li class="ml-12 text-lg my-1/2">
-					<button data-ref={key} class="text-blue-500 hover:text-blue-600 underline underline-offset-2">{capitalizeEachWord(key)}</button>
-				</li>
-			))}
-		</p>
 	</section>
-	<section class="mt-6">
+	
+	<details class="mb-6 border border-zinc-300 dark:border-zinc-700 rounded-lg p-4 bg-zinc-50 dark:bg-zinc-800/50">
+		<summary class="cursor-pointer text-xl font-bold text-zinc-800 dark:text-zinc-100 hover:text-blue-500 dark:hover:text-blue-400 transition-colors">
+			Usage Guide
+		</summary>
+		<div class="mt-4 text-base text-zinc-700 dark:text-zinc-300">
+			<p class="mb-3">
+				The badges come in multiple formats. The <code class="inline px-1.5 py-0.5 bg-zinc-200 dark:bg-zinc-700 rounded">.svg</code> format is preferred in all situations apart from where it is unsupported by the host platform.
+			</p>
+			<p class="mb-3">
+				By default these badges are <code class="inline px-1.5 py-0.5 bg-zinc-200 dark:bg-zinc-700 rounded">{heights[size]}px</code> tall.
+			</p>
+			<p class="mb-3">
+				You can obtain the URL for any badge by clicking on the format button beneath its name.
+			</p>
+			<Prism lang="html" code={'<!-- HTML -->\n<img alt="badge name" src="https://jmcrafter26.github.io/devins-badges/badges/[category]/[badge]/[size].{png,svg}">'} />
+			<Prism lang="md" code={'<!-- Markdown -->\n![badge name]("https://jmcrafter26.github.io/devins-badges/badges/[category]/[badge]/[size].{png,svg}")'} />
+		</div>
+	</details>
+	<section class="mt-2">
 		{[...filteredBadges.keys()].map((key) => (
-			<div class="flex items-center">
-				<h2 id={key} class="text-zinc-800 dark:text-zinc-100 mt-4 mb-3 text-3xl font-bold">{capitalizeEachWord(key)}</h2>
-				<div class="h-[1px] grow bg-black/10 dark:bg-white/40 mt-3 mx-4" />
-				<p class="ml-auto mt-5 text-zinc-800 dark:text-zinc-100 mb-3 text-lg font-semibold">{filteredBadges.get(key)!.length} Badges</p>
+			<div class="category-section mb-10 scroll-mt-20" data-category={key}>
+				<div class="flex items-center mb-2">
+					<h2 id={key} class="text-zinc-800 dark:text-zinc-100 text-2xl font-bold">{capitalizeEachWord(key)}</h2>
+					<div class="h-[2px] grow bg-gradient-to-r from-zinc-300 to-transparent dark:from-zinc-700 ml-4" />
+					<span class="ml-3 px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-sm font-semibold category-count">{filteredBadges.get(key)!.length}</span>
+				</div>
+				<p class="mb-4 text-base text-zinc-600 dark:text-zinc-400">{categories[key]}</p>
+				<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 badges-grid">
+					{filteredBadges.get(key)!.map((badge) => (
+						<div class="badge-item p-3 rounded-lg border border-zinc-200 dark:border-zinc-700 hover:border-blue-400 dark:hover:border-blue-600 transition-colors bg-white dark:bg-zinc-800/50" data-badge-name={badge.slug.toLowerCase()} data-badge-category={key}>
+							<Badge slug={badge.slug} category={badge.category} size={size} />
+						</div>
+					))}
+				</div>
+				<div class="mt-4">
+					<button data-ref="top" class="text-blue-500 hover:text-blue-600 underline underline-offset-2 text-sm font-medium">⬆️ Back to Top</button>
+				</div>
 			</div>
-			<p class="mb-3 text-xl">{categories[key]}</p>
-			<div class="grid grid-cols-2 gap-2">
-				{filteredBadges.get(key)!.map((badge) => (
-					<Badge slug={badge.slug} category={badge.category} size={size} />
-				))}
-			</div>
-			<button data-ref="top" class="text-blue-500 hover:text-blue-600 underline underline-offset-2 text-2xl">⬆️ Back to Top</button>
 		))}
 	</section>
 </PageLayout>
 
 <script transition:persist>
-	buttons = document.querySelectorAll("button");
+	// Table of contents navigation
+	const buttons = document.querySelectorAll("button[data-ref]");
 
 	for(const button of buttons) {
 		button.addEventListener("click", (event) => {
 			const clicked = event.target;
-
 			const ref = clicked.dataset.ref;
+			
 			if(ref === "top") return window.scrollTo(0, 0);
 
 			const target = document.querySelector(`#${ref}`);
@@ -95,4 +105,155 @@ const filteredBadges = groupBy<BadgeDescriptor[], Category>(groupBy(badges, badg
 			})
 		})
 	}
+
+	// Search and filter functionality
+	const searchInput = document.getElementById("badge-search");
+	const categoryFilters = document.getElementById("category-filters");
+	const resultCount = document.getElementById("result-count");
+	
+	// Get all categories and create filter buttons
+	const categories = Array.from(document.querySelectorAll(".category-section"))
+		.map(section => section.getAttribute("data-category"))
+		.filter(Boolean);
+	
+	// Create category filter buttons
+	categories.forEach(category => {
+		const button = document.createElement("button");
+		button.setAttribute("data-category", category);
+		button.className = "category-filter px-4 py-2 rounded-lg font-semibold text-sm transition-colors duration-200";
+		button.textContent = category.split('-').map(word => 
+			word.charAt(0).toUpperCase() + word.slice(1)
+		).join(' ');
+		if(categoryFilters) categoryFilters.appendChild(button);
+	});
+	
+	let activeCategory = "all";
+	
+	// Category filter functionality
+	if(categoryFilters) {
+		categoryFilters.addEventListener("click", (event) => {
+			const target = event.target;
+			if(!target.matches(".category-filter")) return;
+			
+			// Update active state
+			categoryFilters.querySelectorAll(".category-filter").forEach(btn => {
+				btn.classList.remove("active");
+			});
+			target.classList.add("active");
+			
+			activeCategory = target.getAttribute("data-category") || "all";
+			filterBadges();
+		});
+	}
+	
+	// Search input functionality
+	if(searchInput) {
+		searchInput.addEventListener("input", () => {
+			filterBadges();
+		});
+	}
+	
+	function filterBadges() {
+		const searchTerm = searchInput ? searchInput.value.toLowerCase() : "";
+		let visibleCount = 0;
+		
+		// Filter each category section
+		document.querySelectorAll(".category-section").forEach(section => {
+			const categoryName = section.getAttribute("data-category");
+			const categoryMatch = activeCategory === "all" || activeCategory === categoryName;
+			
+			if(!categoryMatch) {
+				section.style.display = "none";
+				return;
+			}
+			
+			// Filter badges within the category
+			let categoryVisibleCount = 0;
+			section.querySelectorAll(".badge-item").forEach(badge => {
+				const badgeName = badge.getAttribute("data-badge-name") || "";
+				const nameMatch = !searchTerm || badgeName.includes(searchTerm);
+				
+				if(nameMatch && categoryMatch) {
+					badge.style.display = "block";
+					categoryVisibleCount++;
+					visibleCount++;
+				} else {
+					badge.style.display = "none";
+				}
+			});
+			
+			// Update category count
+			const countElement = section.querySelector(".category-count");
+			if(countElement) {
+				countElement.textContent = `${categoryVisibleCount} Badges`;
+			}
+			
+			// Hide entire category if no badges visible
+			section.style.display = categoryVisibleCount > 0 ? "block" : "none";
+		});
+		
+		// Update result count
+		if(resultCount) {
+			resultCount.textContent = visibleCount.toString();
+		}
+	}
+	
+	// Initial count
+	filterBadges();
+	
+	// CDN Toggle functionality
+	const cdnToggle = document.getElementById('cdn-toggle');
+	
+	// Set initial toggle state from localStorage
+	const savedCDN = localStorage.getItem('useCDN');
+	if(cdnToggle) {
+		cdnToggle.checked = savedCDN !== 'false'; // Default to true
+	}
+	
+	// Handle toggle change
+	if(cdnToggle) {
+		cdnToggle.addEventListener('change', () => {
+			localStorage.setItem('useCDN', cdnToggle.checked.toString());
+		});
+	}
+	
+	// Handle URL copy buttons
+	document.addEventListener('click', (event) => {
+		const target = event.target;
+		if(!target.closest('.url-copy-btn')) return;
+		
+		const button = target.closest('.url-copy-btn');
+		const format = button.getAttribute('data-format');
+		const container = button.closest('.badge-container');
+		
+		// Check current toggle state
+		const useCDN = cdnToggle ? cdnToggle.checked : true;
+		
+		let url;
+		if(format === 'svg' && useCDN) {
+			// Use CDN URL for SVG
+			url = container.getAttribute('data-cdn-url');
+		} else {
+			// Use local URL
+			const localBase = container.getAttribute('data-local-base');
+			url = `https://jmcrafter26.github.io/devins-badges${localBase}.${format}`;
+		}
+		
+		// Copy to clipboard
+		navigator.clipboard.writeText(url).then(() => {
+			// Show feedback
+			const originalText = button.innerHTML;
+			button.innerHTML = '<b class="text-md">Copied!</b>';
+			button.classList.add('text-green-500');
+			button.classList.remove('text-blue-500');
+			
+			setTimeout(() => {
+				button.innerHTML = originalText;
+				button.classList.remove('text-green-500');
+				button.classList.add('text-blue-500');
+			}, 1500);
+		}).catch(err => {
+			console.error('Failed to copy:', err);
+		});
+	});
 </script>

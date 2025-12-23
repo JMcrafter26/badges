@@ -1,7 +1,7 @@
 <div align="center">
 	<br />
 	<p>
-		<a href="https://badges.penpow.dev"><img src="./src/assets/documentation/docs-rs/cozy-minimal.svg" width="256" alt="Fancy Badges"/></a>
+		<a href="https://jmcrafter26.github.io/devins-badges/"><img src="./src/assets/documentation/docs-rs/cozy-minimal.svg" width="256" alt="Fancy Badges"/></a>
 	</p>
 	<h1>Fancy Badges</h1>
 	<img alt="Deployed on Cloudflare Pages" src="./src/assets/built-with/cloudflare-pages/cozy.svg" />
@@ -41,4 +41,4 @@ This is a fork of [Devin's Badges](https://intergrav.github.io/devins-badges-doc
 
 ## Contributing
 
-We welcome all forms of contribution, however before contributing please read through our [contributing guide](https://badges.penpow.dev/contributing) and [code of conduct](.github/CODE_OF_CONDUCT.md).
+We welcome all forms of contribution, however before contributing please read through our [contributing guide](https://jmcrafter26.github.io/devins-badges/contributing) and [code of conduct](.github/CODE_OF_CONDUCT.md).

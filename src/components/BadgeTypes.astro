@@ -7,43 +7,41 @@ import compactBadge from "../assets/available/git/compact.svg";
 import compactMinimalBadge from "../assets/available/git/compact-minimal.svg";
 ---
 
-<div class="flex items-center">
-	<h2 class="text-zinc-800 dark:text-zinc-100 mt-4 mb-3 text-3xl font-bold">Badge Types</h2>
-	<div class="h-[1px] grow bg-black/10 dark:bg-white/40 mt-3 mx-4" />
+<div class="mb-6">
+	<h2 class="text-2xl font-bold text-zinc-800 dark:text-zinc-100 mb-4">Badge Types</h2>
+	<p class="text-zinc-600 dark:text-zinc-400 mb-6">Choose from four different badge styles to match your project's aesthetic</p>
 </div>
-<div class="grid grid-cols-[1.25fr_2fr] items-center gap-6 my-4">
-	<Image src={cozyBadge} alt="A cozy badge" />
-	<p>
-		<a href="/badges/cozy" class="text-blue-500 hover:text-blue-600 underline underline-offset-4">
-			<b class="text-xl">Cozy</b></a>
-		<br/>
-		Cozy badges are the largest and take up two lines
-	</p>
-</div>
-<div class="grid grid-cols-[1.25fr_2fr] items-center gap-6 my-4">
-	<Image src={compactBadge} alt="A compact badge" />
-	<p>
-		<a href="/badges/compact" class="text-blue-500 hover:text-blue-600 underline underline-offset-2">
-			<b class="text-xl">Compact</b></a>
-		<br/>
-		Compact badges are similar to cozy, except only a single line tall
-	</p>
-</div>
-<div class="grid grid-cols-[1.25fr_2fr] items-center gap-6 my-4">
-	<Image src={cozyMinimalBadge} alt="A cozy-minimal badge" />
-	<p>
-		<a href="/badges/cozy-minimal" class="text-blue-500 hover:text-blue-600 underline underline-offset-2">
-			<b class="text-xl">Cozy Minimal</b></a>
-		<br/>
-		Minimal badges only display the icon, with no accompanying text. The cozy variant is larger.
-	</p>
-</div>
-<div class="grid grid-cols-[1.25fr_2fr] items-center gap-6 my-4">
-	<Image src={compactMinimalBadge} alt="A compact-minimal badge" />
-	<p>
-		<a href="/badges/compact-minimal" class="text-blue-500 hover:text-blue-600 underline underline-offset-2">
-			<b class="text-xl">Compact Minimal</b></a>
-		<br/>
-		Minimal badges only display the icon, with no accompanying text. The compact variant is smaller.
-	</p>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+	<a href="/badges/cozy" class="group block bg-white dark:bg-zinc-800 rounded-lg p-5 border border-zinc-200 dark:border-zinc-700 hover:border-blue-400 dark:hover:border-blue-600 transition-all hover:shadow-md">
+		<div class="flex items-center gap-4 mb-3">
+			<Image src={cozyBadge} alt="A cozy badge" class="w-auto" />
+		</div>
+		<h3 class="text-lg font-bold text-zinc-900 dark:text-zinc-100 mb-1 group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors">Cozy</h3>
+		<p class="text-sm text-zinc-600 dark:text-zinc-400">Large two-line badges with maximum visibility</p>
+	</a>
+	
+	<a href="/badges/compact" class="group block bg-white dark:bg-zinc-800 rounded-lg p-5 border border-zinc-200 dark:border-zinc-700 hover:border-blue-400 dark:hover:border-blue-600 transition-all hover:shadow-md">
+		<div class="flex items-center gap-4 mb-3">
+			<Image src={compactBadge} alt="A compact badge" class="w-auto" />
+		</div>
+		<h3 class="text-lg font-bold text-zinc-900 dark:text-zinc-100 mb-1 group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors">Compact</h3>
+		<p class="text-sm text-zinc-600 dark:text-zinc-400">Single-line badges that save vertical space</p>
+	</a>
+	
+	<a href="/badges/cozy-minimal" class="group block bg-white dark:bg-zinc-800 rounded-lg p-5 border border-zinc-200 dark:border-zinc-700 hover:border-blue-400 dark:hover:border-blue-600 transition-all hover:shadow-md">
+		<div class="flex items-center gap-4 mb-3">
+			<Image src={cozyMinimalBadge} alt="A cozy-minimal badge" class="w-auto" />
+		</div>
+		<h3 class="text-lg font-bold text-zinc-900 dark:text-zinc-100 mb-1 group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors">Cozy Minimal</h3>
+		<p class="text-sm text-zinc-600 dark:text-zinc-400">Icon-only badges with larger size for emphasis</p>
+	</a>
+	
+	<a href="/badges/compact-minimal" class="group block bg-white dark:bg-zinc-800 rounded-lg p-5 border border-zinc-200 dark:border-zinc-700 hover:border-blue-400 dark:hover:border-blue-600 transition-all hover:shadow-md">
+		<div class="flex items-center gap-4 mb-3">
+			<Image src={compactMinimalBadge} alt="A compact-minimal badge" class="w-auto" />
+		</div>
+		<h3 class="text-lg font-bold text-zinc-900 dark:text-zinc-100 mb-1 group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors">Compact Minimal</h3>
+		<p class="text-sm text-zinc-600 dark:text-zinc-400">Small icon-only badges for subtle branding</p>
+	</a>
 </div>
