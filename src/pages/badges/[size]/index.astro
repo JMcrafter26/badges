@@ -8,6 +8,12 @@ import { size as sizes, badges, heights } from "../../../utils/badges";
 import { categories } from "../../../utils/categories";
 import type { BadgeDescriptor, Category } from "../../../utils/types";
 import { capitalizeEachWord } from "../../../utils/strings";
+import { Image } from "astro:assets";
+
+import cozyBadge from "../../../assets/available/git/cozy.svg";
+import cozyMinimalBadge from "../../../assets/available/git/cozy-minimal.svg";
+import compactBadge from "../../../assets/available/git/compact.svg";
+import compactMinimalBadge from "../../../assets/available/git/compact-minimal.svg";
 
 export const prerender = true;
 export function getStaticPaths() {
@@ -46,6 +52,39 @@ const filteredBadges = groupBy<BadgeDescriptor[], Category>(groupBy(badges, badg
 		</div>
 	</section>
 	
+	<!-- Style Switcher -->
+	<section class="mb-6">
+		<div class="p-4 bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-300 dark:border-zinc-700 rounded-lg">
+			<h3 class="text-base font-bold text-zinc-800 dark:text-zinc-100 mb-3">Badge Style</h3>
+			<div class="grid grid-cols-4 gap-3" id="style-switcher">
+				<a href="/badges/cozy" class={`style-link style-btn p-3 rounded-lg border-2 transition-all flex flex-col items-center gap-2 ${size === 'cozy' ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20' : 'border-zinc-300 dark:border-zinc-600 hover:border-blue-400 dark:hover:border-blue-500'}`}>
+					<div class="flex items-center justify-center h-16">
+						<Image src={cozyBadge} alt="Cozy badge" class="w-auto max-h-full" />
+					</div>
+					<span class={`text-xs font-medium whitespace-nowrap ${size === 'cozy' ? 'text-blue-700 dark:text-blue-300' : 'text-zinc-700 dark:text-zinc-300'}`}>Cozy</span>
+				</a>
+				<a href="/badges/compact" class={`style-link style-btn p-3 rounded-lg border-2 transition-all flex flex-col items-center gap-2 ${size === 'compact' ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20' : 'border-zinc-300 dark:border-zinc-600 hover:border-blue-400 dark:hover:border-blue-500'}`}>
+					<div class="flex items-center justify-center h-16">
+						<Image src={compactBadge} alt="Compact badge" class="w-auto max-h-full" />
+					</div>
+					<span class={`text-xs font-medium whitespace-nowrap ${size === 'compact' ? 'text-blue-700 dark:text-blue-300' : 'text-zinc-700 dark:text-zinc-300'}`}>Compact</span>
+				</a>
+				<a href="/badges/cozy-minimal" class={`style-link style-btn p-3 rounded-lg border-2 transition-all flex flex-col items-center gap-2 ${size === 'cozy-minimal' ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20' : 'border-zinc-300 dark:border-zinc-600 hover:border-blue-400 dark:hover:border-blue-500'}`}>
+					<div class="flex items-center justify-center h-16">
+						<Image src={cozyMinimalBadge} alt="Cozy minimal badge" class="w-auto max-h-full" />
+					</div>
+					<span class={`text-xs font-medium whitespace-nowrap ${size === 'cozy-minimal' ? 'text-blue-700 dark:text-blue-300' : 'text-zinc-700 dark:text-zinc-300'}`}>Cozy Minimal</span>
+				</a>
+				<a href="/badges/compact-minimal" class={`style-link style-btn p-3 rounded-lg border-2 transition-all flex flex-col items-center gap-2 ${size === 'compact-minimal' ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20' : 'border-zinc-300 dark:border-zinc-600 hover:border-blue-400 dark:hover:border-blue-500'}`}>
+					<div class="flex items-center justify-center h-16">
+						<Image src={compactMinimalBadge} alt="Compact minimal badge" class="w-auto max-h-full" />
+					</div>
+					<span class={`text-xs font-medium whitespace-nowrap ${size === 'compact-minimal' ? 'text-blue-700 dark:text-blue-300' : 'text-zinc-700 dark:text-zinc-300'}`}>Compact Minimal</span>
+				</a>
+			</div>
+		</div>
+	</section>
+	
 	<details class="mb-6 border border-zinc-300 dark:border-zinc-700 rounded-lg p-4 bg-zinc-50 dark:bg-zinc-800/50">
 		<summary class="cursor-pointer text-xl font-bold text-zinc-800 dark:text-zinc-100 hover:text-blue-500 dark:hover:text-blue-400 transition-colors">
 			Usage Guide
@@ -81,56 +120,108 @@ const filteredBadges = groupBy<BadgeDescriptor[], Category>(groupBy(badges, badg
 					))}
 				</div>
 				<div class="mt-4">
-					<button data-ref="top" class="text-blue-500 hover:text-blue-600 underline underline-offset-2 text-sm font-medium">⬆️ Back to Top</button>
+					<button data-ref="top" class="text-blue-500 hover:text-blue-600 underline underline-offset-2 text-sm font-medium">Back to Top</button>
 				</div>
 			</div>
 		))}
 	</section>
 </PageLayout>
 
-<script transition:persist>
-	// Table of contents navigation
-	const buttons = document.querySelectorAll("button[data-ref]");
+<script>
+	function initializeSearchAndFilters() {
+		// Get URL parameters
+		const urlParams = new URLSearchParams(window.location.search);
+		const searchParam = urlParams.get('search') || '';
+		const filterParam = urlParams.get('filter') || 'all';
+		
+		// Table of contents navigation
+		const buttons = document.querySelectorAll("button[data-ref]");
 
-	for(const button of buttons) {
-		button.addEventListener("click", (event) => {
-			const clicked = event.target;
-			const ref = clicked.dataset.ref;
-			
-			if(ref === "top") return window.scrollTo(0, 0);
+		for(const button of buttons) {
+			button.addEventListener("click", (event) => {
+				const clicked = event.target;
+				const ref = clicked.dataset.ref;
+				
+				if(ref === "top") return window.scrollTo(0, 0);
 
-			const target = document.querySelector(`#${ref}`);
-			if(target) target.scrollIntoView({
-				behavior: "smooth",
+				const target = document.querySelector(`#${ref}`);
+				if(target) target.scrollIntoView({
+					behavior: "smooth",
+				})
 			})
-		})
-	}
+		}
 
-	// Search and filter functionality
-	const searchInput = document.getElementById("badge-search");
-	const categoryFilters = document.getElementById("category-filters");
-	const resultCount = document.getElementById("result-count");
-	
-	// Get all categories and create filter buttons
-	const categories = Array.from(document.querySelectorAll(".category-section"))
-		.map(section => section.getAttribute("data-category"))
-		.filter(Boolean);
-	
-	// Create category filter buttons
-	categories.forEach(category => {
-		const button = document.createElement("button");
-		button.setAttribute("data-category", category);
-		button.className = "category-filter px-4 py-2 rounded-lg font-semibold text-sm transition-colors duration-200";
-		button.textContent = category.split('-').map(word => 
-			word.charAt(0).toUpperCase() + word.slice(1)
-		).join(' ');
-		if(categoryFilters) categoryFilters.appendChild(button);
-	});
-	
-	let activeCategory = "all";
-	
-	// Category filter functionality
-	if(categoryFilters) {
+		// Search and filter functionality
+		const searchInput = document.getElementById("badge-search");
+		const categoryFilters = document.getElementById("category-filters");
+		const resultCount = document.getElementById("result-count");
+		
+		if(!searchInput || !categoryFilters || !resultCount) return;
+		
+		// Restore search input from URL
+		searchInput.value = searchParam;
+		
+		// Get all categories and create filter buttons
+		const categories = Array.from(document.querySelectorAll(".category-section"))
+			.map(section => section.getAttribute("data-category"))
+			.filter(Boolean);
+		
+		// Clear existing buttons except "All"
+		const allButton = categoryFilters.querySelector('[data-category="all"]');
+		categoryFilters.innerHTML = '';
+		if(allButton) {
+			categoryFilters.appendChild(allButton);
+		}
+		
+		// Create category filter buttons
+		categories.forEach(category => {
+			const button = document.createElement("button");
+			button.setAttribute("data-category", category);
+			button.className = "category-filter px-3 py-1.5 rounded-md font-medium text-sm transition-colors duration-200";
+			button.textContent = category.split('-').map(word => 
+				word.charAt(0).toUpperCase() + word.slice(1)
+			).join(' ');
+			categoryFilters.appendChild(button);
+		});
+		
+		let activeCategory = filterParam;
+		
+		// Set active button from URL parameter
+		const activeBtn = categoryFilters.querySelector(`[data-category="${activeCategory}"]`);
+		if(activeBtn) {
+			activeBtn.classList.add("active");
+		} else {
+			// Fallback to "All" if category not found
+			activeCategory = "all";
+			const allBtn = categoryFilters.querySelector('[data-category="all"]');
+			if(allBtn) allBtn.classList.add("active");
+		}
+		
+		// Update URL parameters
+		function updateURL() {
+			const params = new URLSearchParams();
+			if(searchInput.value) params.set('search', searchInput.value);
+			if(activeCategory !== 'all') params.set('filter', activeCategory);
+			
+			const newURL = params.toString() ? `${window.location.pathname}?${params.toString()}` : window.location.pathname;
+			window.history.replaceState({}, '', newURL);
+		}
+		
+		// Update style switcher links with current parameters
+		function updateStyleLinks() {
+			const params = new URLSearchParams();
+			if(searchInput.value) params.set('search', searchInput.value);
+			if(activeCategory !== 'all') params.set('filter', activeCategory);
+			
+			const queryString = params.toString() ? `?${params.toString()}` : '';
+			
+			document.querySelectorAll('.style-link').forEach(link => {
+				const baseHref = link.getAttribute('href').split('?')[0];
+				link.setAttribute('href', baseHref + queryString);
+			});
+		}
+		
+		// Category filter functionality
 		categoryFilters.addEventListener("click", (event) => {
 			const target = event.target;
 			if(!target.matches(".category-filter")) return;
@@ -142,118 +233,125 @@ const filteredBadges = groupBy<BadgeDescriptor[], Category>(groupBy(badges, badg
 			target.classList.add("active");
 			
 			activeCategory = target.getAttribute("data-category") || "all";
+			updateURL();
+			updateStyleLinks();
 			filterBadges();
 		});
-	}
-	
-	// Search input functionality
-	if(searchInput) {
-		searchInput.addEventListener("input", () => {
-			filterBadges();
-		});
-	}
-	
-	function filterBadges() {
-		const searchTerm = searchInput ? searchInput.value.toLowerCase() : "";
-		let visibleCount = 0;
 		
-		// Filter each category section
-		document.querySelectorAll(".category-section").forEach(section => {
-			const categoryName = section.getAttribute("data-category");
-			const categoryMatch = activeCategory === "all" || activeCategory === categoryName;
+		// Search input functionality
+		searchInput.addEventListener("input", () => {
+			updateURL();
+			updateStyleLinks();
+			filterBadges();
+		});
+		
+		function filterBadges() {
+			const searchTerm = searchInput.value.toLowerCase();
+			let visibleCount = 0;
 			
-			if(!categoryMatch) {
-				section.style.display = "none";
-				return;
-			}
-			
-			// Filter badges within the category
-			let categoryVisibleCount = 0;
-			section.querySelectorAll(".badge-item").forEach(badge => {
-				const badgeName = badge.getAttribute("data-badge-name") || "";
-				const nameMatch = !searchTerm || badgeName.includes(searchTerm);
+			// Filter each category section
+			document.querySelectorAll(".category-section").forEach(section => {
+				const categoryName = section.getAttribute("data-category");
+				const categoryMatch = activeCategory === "all" || activeCategory === categoryName;
 				
-				if(nameMatch && categoryMatch) {
-					badge.style.display = "block";
-					categoryVisibleCount++;
-					visibleCount++;
-				} else {
-					badge.style.display = "none";
+				if(!categoryMatch) {
+					section.style.display = "none";
+					return;
 				}
+				
+				// Filter badges within the category
+				let categoryVisibleCount = 0;
+				section.querySelectorAll(".badge-item").forEach(badge => {
+					const badgeName = badge.getAttribute("data-badge-name") || "";
+					const nameMatch = !searchTerm || badgeName.includes(searchTerm);
+					
+					if(nameMatch && categoryMatch) {
+						badge.style.display = "block";
+						categoryVisibleCount++;
+						visibleCount++;
+					} else {
+						badge.style.display = "none";
+					}
+				});
+				
+				// Update category count
+				const countElement = section.querySelector(".category-count");
+				if(countElement) {
+					countElement.textContent = `${categoryVisibleCount}`;
+				}
+				
+				// Hide entire category if no badges visible
+				section.style.display = categoryVisibleCount > 0 ? "block" : "none";
 			});
 			
-			// Update category count
-			const countElement = section.querySelector(".category-count");
-			if(countElement) {
-				countElement.textContent = `${categoryVisibleCount} Badges`;
-			}
-			
-			// Hide entire category if no badges visible
-			section.style.display = categoryVisibleCount > 0 ? "block" : "none";
-		});
-		
-		// Update result count
-		if(resultCount) {
+			// Update result count
 			resultCount.textContent = visibleCount.toString();
 		}
-	}
-	
-	// Initial count
-	filterBadges();
-	
-	// CDN Toggle functionality
-	const cdnToggle = document.getElementById('cdn-toggle');
-	
-	// Set initial toggle state from localStorage
-	const savedCDN = localStorage.getItem('useCDN');
-	if(cdnToggle) {
-		cdnToggle.checked = savedCDN !== 'false'; // Default to true
-	}
-	
-	// Handle toggle change
-	if(cdnToggle) {
-		cdnToggle.addEventListener('change', () => {
-			localStorage.setItem('useCDN', cdnToggle.checked.toString());
-		});
-	}
-	
-	// Handle URL copy buttons
-	document.addEventListener('click', (event) => {
-		const target = event.target;
-		if(!target.closest('.url-copy-btn')) return;
 		
-		const button = target.closest('.url-copy-btn');
-		const format = button.getAttribute('data-format');
-		const container = button.closest('.badge-container');
+		// Initial count, display, and URL update
+		updateStyleLinks();
+		filterBadges();
 		
-		// Check current toggle state
-		const useCDN = cdnToggle ? cdnToggle.checked : true;
+		// CDN Toggle functionality
+		const cdnToggle = document.getElementById('cdn-toggle');
 		
-		let url;
-		if(format === 'svg' && useCDN) {
-			// Use CDN URL for SVG
-			url = container.getAttribute('data-cdn-url');
-		} else {
-			// Use local URL
-			const localBase = container.getAttribute('data-local-base');
-			url = `https://jmcrafter26.github.io/devins-badges${localBase}.${format}`;
+		// Set initial toggle state from localStorage
+		const savedCDN = localStorage.getItem('useCDN');
+		if(cdnToggle) {
+			cdnToggle.checked = savedCDN !== 'false'; // Default to true
 		}
 		
-		// Copy to clipboard
-		navigator.clipboard.writeText(url).then(() => {
-			// Show feedback
-			const originalText = button.innerHTML;
-			button.innerHTML = '<b class="text-md">Copied!</b>';
-			button.classList.add('text-green-500');
-			button.classList.remove('text-blue-500');
+		// Handle toggle change
+		if(cdnToggle) {
+			cdnToggle.addEventListener('change', () => {
+				localStorage.setItem('useCDN', cdnToggle.checked.toString());
+			});
+		}
+		
+		// Handle URL copy buttons
+		document.addEventListener('click', (event) => {
+			const target = event.target;
+			if(!target.closest('.url-copy-btn')) return;
 			
-			setTimeout(() => {
-				button.innerHTML = originalText;
-				button.classList.remove('text-green-500');
-				button.classList.add('text-blue-500');
-			}, 1500);
-		}).catch(err => {
-			console.error('Failed to copy:', err);
+			const button = target.closest('.url-copy-btn');
+			const format = button.getAttribute('data-format');
+			const container = button.closest('.badge-container');
+			
+			// Check current toggle state
+			const useCDN = cdnToggle ? cdnToggle.checked : true;
+			
+			let url;
+			if(format === 'svg' && useCDN) {
+				// Use CDN URL for SVG
+				url = container.getAttribute('data-cdn-url');
+			} else {
+				// Use local URL
+				const localBase = container.getAttribute('data-local-base');
+				url = `https://jmcrafter26.github.io/devins-badges${localBase}.${format}`;
+			}
+			
+			// Copy to clipboard
+			navigator.clipboard.writeText(url).then(() => {
+				// Show feedback
+				const originalText = button.innerHTML;
+				button.innerHTML = '<b class="text-md">Copied!</b>';
+				button.classList.add('text-green-500');
+				button.classList.remove('text-blue-500');
+				
+				setTimeout(() => {
+					button.innerHTML = originalText;
+					button.classList.remove('text-green-500');
+					button.classList.add('text-blue-500');
+				}, 1500);
+			}).catch(err => {
+				console.error('Failed to copy:', err);
+			});
 		});
-	});
+	}
+	
+	// Run on initial load
+	initializeSearchAndFilters();
+	
+	// Re-run after page transitions
+	document.addEventListener('astro:after-swap', initializeSearchAndFilters);
 </script>
