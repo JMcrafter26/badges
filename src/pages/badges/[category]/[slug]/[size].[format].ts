@@ -45,7 +45,8 @@ export const GET: APIRoute = async ({ params }) => {
 		if(["jpeg", "jpg"].includes(format)) formatted.flatten({ background: "#FFFFFF" })
 		else formatted.ensureAlpha(1)
 
-		return new Response(await formatted.toFormat(format).toBuffer(), { headers: { "Content-Type": formats[format] }});
+		const buffer = await formatted.toFormat(format).toBuffer();
+		return new Response(buffer as any, { headers: { "Content-Type": formats[format] }});
 	}
 
 	const svg = img.toString();

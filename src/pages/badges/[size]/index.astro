@@ -3,7 +3,6 @@ import PageLayout from "../../../layouts/Base.astro";
 import Badge from "../../../components/Badge.astro";
 import SearchBar from "../../../components/SearchBar.astro";
 import { groupBy } from "../../../utils/arrays";
-import { Prism } from '@astrojs/prism';
 import { size as sizes, badges, heights } from "../../../utils/badges";
 import { categories } from "../../../utils/categories";
 import type { BadgeDescriptor, Category } from "../../../utils/types";
@@ -99,8 +98,10 @@ const filteredBadges = groupBy<BadgeDescriptor[], Category>(groupBy(badges, badg
 			<p class="mb-3">
 				You can obtain the URL for any badge by clicking on the format button beneath its name.
 			</p>
-			<Prism lang="html" code={'<!-- HTML -->\n<img alt="badge name" src="https://jmcrafter26.github.io/devins-badges/badges/[category]/[badge]/[size].{png,svg}">'} />
-			<Prism lang="md" code={'<!-- Markdown -->\n![badge name]("https://jmcrafter26.github.io/devins-badges/badges/[category]/[badge]/[size].{png,svg}")'} />
+			<pre class="bg-zinc-100 dark:bg-zinc-800 p-3 rounded-lg overflow-x-auto mb-3"><code class="text-sm text-zinc-800 dark:text-zinc-200">&lt;!-- HTML --&gt;
+&lt;img alt="badge name" src="https://jmcrafter26.github.io/devins-badges/badges/[category]/[badge]/[size].&#123;png,svg&#125;"&gt;</code></pre>
+			<pre class="bg-zinc-100 dark:bg-zinc-800 p-3 rounded-lg overflow-x-auto"><code class="text-sm text-zinc-800 dark:text-zinc-200">&lt;!-- Markdown --&gt;
+![badge name]("https://jmcrafter26.github.io/devins-badges/badges/[category]/[badge]/[size].&#123;png,svg&#125;")</code></pre>
 		</div>
 	</details>
 	<section class="mt-2">
@@ -139,7 +140,8 @@ const filteredBadges = groupBy<BadgeDescriptor[], Category>(groupBy(badges, badg
 
 		for(const button of buttons) {
 			button.addEventListener("click", (event) => {
-				const clicked = event.target;
+				const clicked = event.target as HTMLElement;
+				if (!clicked) return;
 				const ref = clicked.dataset.ref;
 				
 				if(ref === "top") return window.scrollTo(0, 0);
@@ -152,7 +154,7 @@ const filteredBadges = groupBy<BadgeDescriptor[], Category>(groupBy(badges, badg
 		}
 
 		// Search and filter functionality
-		const searchInput = document.getElementById("badge-search");
+		const searchInput = document.getElementById("badge-search") as HTMLInputElement | null;
 		const categoryFilters = document.getElementById("category-filters");
 		const resultCount = document.getElementById("result-count");
 		
@@ -200,7 +202,7 @@ const filteredBadges = groupBy<BadgeDescriptor[], Category>(groupBy(badges, badg
 		// Update URL parameters
 		function updateURL() {
 			const params = new URLSearchParams();
-			if(searchInput.value) params.set('search', searchInput.value);
+			if(searchInput && searchInput.value) params.set('search', searchInput.value);
 			if(activeCategory !== 'all') params.set('filter', activeCategory);
 			
 			const newURL = params.toString() ? `${window.location.pathname}?${params.toString()}` : window.location.pathname;
@@ -210,21 +212,23 @@ const filteredBadges = groupBy<BadgeDescriptor[], Category>(groupBy(badges, badg
 		// Update style switcher links with current parameters
 		function updateStyleLinks() {
 			const params = new URLSearchParams();
-			if(searchInput.value) params.set('search', searchInput.value);
+			if(searchInput && searchInput.value) params.set('search', searchInput.value);
 			if(activeCategory !== 'all') params.set('filter', activeCategory);
 			
 			const queryString = params.toString() ? `?${params.toString()}` : '';
 			
 			document.querySelectorAll('.style-link').forEach(link => {
-				const baseHref = link.getAttribute('href').split('?')[0];
+				const href = link.getAttribute('href');
+				if (!href) return;
+				const baseHref = href.split('?')[0];
 				link.setAttribute('href', baseHref + queryString);
 			});
 		}
 		
 		// Category filter functionality
 		categoryFilters.addEventListener("click", (event) => {
-			const target = event.target;
-			if(!target.matches(".category-filter")) return;
+			const target = event.target as HTMLElement;
+			if(!target || !target.matches(".category-filter")) return;
 			
 			// Update active state
 			categoryFilters.querySelectorAll(".category-filter").forEach(btn => {
@@ -246,42 +250,45 @@ const filteredBadges = groupBy<BadgeDescriptor[], Category>(groupBy(badges, badg
 		});
 		
 		function filterBadges() {
+			if (!searchInput || !resultCount) return;
 			const searchTerm = searchInput.value.toLowerCase();
 			let visibleCount = 0;
 			
 			// Filter each category section
 			document.querySelectorAll(".category-section").forEach(section => {
-				const categoryName = section.getAttribute("data-category");
+				const sectionEl = section as HTMLElement;
+				const categoryName = sectionEl.getAttribute("data-category");
 				const categoryMatch = activeCategory === "all" || activeCategory === categoryName;
 				
 				if(!categoryMatch) {
-					section.style.display = "none";
+					sectionEl.style.display = "none";
 					return;
 				}
 				
 				// Filter badges within the category
 				let categoryVisibleCount = 0;
-				section.querySelectorAll(".badge-item").forEach(badge => {
-					const badgeName = badge.getAttribute("data-badge-name") || "";
+				sectionEl.querySelectorAll(".badge-item").forEach(badge => {
+					const badgeEl = badge as HTMLElement;
+					const badgeName = badgeEl.getAttribute("data-badge-name") || "";
 					const nameMatch = !searchTerm || badgeName.includes(searchTerm);
 					
 					if(nameMatch && categoryMatch) {
-						badge.style.display = "block";
+						badgeEl.style.display = "block";
 						categoryVisibleCount++;
 						visibleCount++;
 					} else {
-						badge.style.display = "none";
+						badgeEl.style.display = "none";
 					}
 				});
 				
 				// Update category count
-				const countElement = section.querySelector(".category-count");
+				const countElement = sectionEl.querySelector(".category-count");
 				if(countElement) {
 					countElement.textContent = `${categoryVisibleCount}`;
 				}
 				
 				// Hide entire category if no badges visible
-				section.style.display = categoryVisibleCount > 0 ? "block" : "none";
+				sectionEl.style.display = categoryVisibleCount > 0 ? "block" : "none";
 			});
 			
 			// Update result count
@@ -293,7 +300,7 @@ const filteredBadges = groupBy<BadgeDescriptor[], Category>(groupBy(badges, badg
 		filterBadges();
 		
 		// CDN Toggle functionality
-		const cdnToggle = document.getElementById('cdn-toggle');
+		const cdnToggle = document.getElementById('cdn-toggle') as HTMLInputElement | null;
 		
 		// Set initial toggle state from localStorage
 		const savedCDN = localStorage.getItem('useCDN');
@@ -310,12 +317,14 @@ const filteredBadges = groupBy<BadgeDescriptor[], Category>(groupBy(badges, badg
 		
 		// Handle URL copy buttons
 		document.addEventListener('click', (event) => {
-			const target = event.target;
-			if(!target.closest('.url-copy-btn')) return;
+			const target = event.target as HTMLElement;
+			if(!target || !target.closest('.url-copy-btn')) return;
 			
-			const button = target.closest('.url-copy-btn');
+			const button = target.closest('.url-copy-btn') as HTMLElement;
+			if (!button) return;
 			const format = button.getAttribute('data-format');
-			const container = button.closest('.badge-container');
+			const container = button.closest('.badge-container') as HTMLElement;
+			if (!container) return;
 			
 			// Check current toggle state
 			const useCDN = cdnToggle ? cdnToggle.checked : true;
@@ -331,6 +340,7 @@ const filteredBadges = groupBy<BadgeDescriptor[], Category>(groupBy(badges, badg
 			}
 			
 			// Copy to clipboard
+			if (!url) return;
 			navigator.clipboard.writeText(url).then(() => {
 				// Show feedback
 				const originalText = button.innerHTML;

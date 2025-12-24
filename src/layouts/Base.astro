@@ -123,14 +123,13 @@ const siteTitle = `${title} ${titleSeparator} ${siteConfig.title}`;
 		<script>
 			// Scroll to top button functionality
 			function setupScrollToTop() {
-				const scrollBtn = document.getElementById('scroll-to-top');
+			const scrollBtn = document.getElementById('scroll-to-top') as HTMLElement | null;
+			if(!scrollBtn) return;
+			
+			// Show/hide button based on scroll position
+			function toggleScrollButton() {
 				if(!scrollBtn) return;
-				
-				// Show/hide button based on scroll position
-				function toggleScrollButton() {
-					if(window.scrollY > 300) {
-						scrollBtn.style.opacity = '1';
-						scrollBtn.style.pointerEvents = 'auto';
+				if(window.scrollY > 300) {
 					} else {
 						scrollBtn.style.opacity = '0';
 						scrollBtn.style.pointerEvents = 'none';
