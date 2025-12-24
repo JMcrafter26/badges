@@ -2,12 +2,12 @@
 <g clip-path="url(#clip0_1_62)">
 <rect width="56" height="56" rx="8.4" fill="url(#paint0_linear_1_62)"/>
 <g filter="url(#filter0_d_1_62)">
-<rect x="-4" y="-3" width="65" height="65" fill="url(#pattern0_1_62)"/>
+<rect x="-5" y="-5" width="66" height="66" fill="url(#pattern0_1_62)"/>
 </g>
 </g>
 <rect x="1.05" y="1.05" width="53.9" height="53.9" rx="7.35" stroke="white" stroke-opacity="0.15" stroke-width="2.1"/>
 <defs>
-<filter id="filter0_d_1_62" x="-9.71429" y="-8.71429" width="76.4286" height="76.4286" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<filter id="filter0_d_1_62" x="-10.7143" y="-10.7143" width="77.4286" height="77.4286" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
 <feFlood flood-opacity="0" result="BackgroundImageFix"/>
 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
 <feOffset/>
@@ -21,8 +21,8 @@
 <use xlink:href="#image0_1_62" transform="scale(0.000639795)"/>
 </pattern>
 <linearGradient id="paint0_linear_1_62" x1="28" y1="0" x2="28" y2="56" gradientUnits="userSpaceOnUse">
-<stop stop-color="#2A2C84"/>
-<stop offset="1" stop-color="#0F172A"/>
+<stop stop-color="#2A2C7A"/>
+<stop offset="1" stop-color="#090F1C"/>
 </linearGradient>
 <clipPath id="clip0_1_62">
 <rect width="56" height="56" rx="8.4" fill="white"/>
