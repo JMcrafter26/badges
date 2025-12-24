@@ -9,7 +9,7 @@ import compress from "astro-compress";
 // https://astro.build/config
 export default defineConfig({
   output: "static",
-  site: "https://jmcrafter26.github.io/devins-badges/",
+  site: "https://jmcrafter26.github.io/badges/",
   base: "/devins-badges",
   prefetch: {
     prefetchAll: true

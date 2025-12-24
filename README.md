@@ -1,7 +1,7 @@
 <div align="center">
 	<br />
 	<p>
-		<a href="https://jmcrafter26.github.io/devins-badges/"><img src="./src/assets/documentation/docs-rs/cozy-minimal.svg" width="256" alt="Fancy Badges"/></a>
+		<a href="https://jmcrafter26.github.io/badges/"><img src="./src/assets/documentation/docs-rs/cozy-minimal.svg" width="256" alt="Fancy Badges"/></a>
 	</p>
 	<h1>Fancy Badges</h1>
 	<p>
@@ -11,10 +11,10 @@
 		<img alt="Built with TypeScript" src="./src/assets/built-with/typescript/cozy.svg">
 	</p>
 	<p>
-		<a href="https://jmcrafter26.github.io/devins-badges/"><strong>Browse Badges →</strong></a>
+		<a href="https://jmcrafter26.github.io/badges/"><strong>Browse Badges →</strong></a>
 	</p>
 	<p>
-		<img alt="Badge Count" src="https://img.shields.io/endpoint?url=https://jmcrafter26.github.io/devins-badges/stats.json">
+		<img alt="Badge Count" src="https://img.shields.io/endpoint?url=https://jmcrafter26.github.io/badges/stats.json">
 		<img alt="GitHub Stars" src="https://img.shields.io/github/stars/JMcrafter26/devins-badges">
 		<img alt="GitHub License" src="https://img.shields.io/github/license/JMcrafter26/devins-badges">
 	</p>
@@ -33,13 +33,13 @@
 
 ### Browse Online
 
-Visit [jmcrafter26.github.io/devins-badges](https://jmcrafter26.github.io/devins-badges/) to browse all available badges with live search and preview.
+Visit [jmcrafter26.github.io/devins-badges](https://jmcrafter26.github.io/badges/) to browse all available badges with live search and preview.
 
 ### Use via CDN
 
 **GitHub Pages (Recommended):**
 ```
-https://jmcrafter26.github.io/devins-badges/badges/[category]/[badge]/[size].[format]
+https://jmcrafter26.github.io/badges/badges/[category]/[badge]/[size].[format]
 ```
 
 **jsDelivr (SVG source only):**
@@ -51,12 +51,12 @@ https://cdn.jsdelivr.net/gh/JMcrafter26/devins-badges@main/src/assets/[category]
 
 **Markdown:**
 ```md
-![GitHub](https://jmcrafter26.github.io/devins-badges/badges/available/github/cozy.svg)
+![GitHub](https://jmcrafter26.github.io/badges/badges/available/github/cozy.svg)
 ```
 
 **HTML:**
 ```html
-<img alt="GitHub" src="https://jmcrafter26.github.io/devins-badges/badges/available/github/cozy.png">
+<img alt="GitHub" src="https://jmcrafter26.github.io/badges/badges/available/github/cozy.png">
 ```
 
 **Different formats:**
@@ -70,12 +70,12 @@ https://cdn.jsdelivr.net/gh/JMcrafter26/devins-badges@main/src/assets/[category]
 
 Get badge statistics in JSON format:
 ```
-https://jmcrafter26.github.io/devins-badges/stats.json
+https://jmcrafter26.github.io/badges/stats.json
 ```
 
 Use with shields.io:
 ```md
-![Badge Count](https://img.shields.io/endpoint?url=https://jmcrafter26.github.io/devins-badges/stats.json)
+![Badge Count](https://img.shields.io/endpoint?url=https://jmcrafter26.github.io/badges/stats.json)
 ```
 
 ## 📁 Categories
@@ -101,7 +101,7 @@ Use with shields.io:
 
 ## 🤝 Contributing
 
-We welcome contributions! Whether you want to add new badges, improve existing ones, or fix bugs, check out our [Contributing Guide](https://jmcrafter26.github.io/devins-badges/contributing).
+We welcome contributions! Whether you want to add new badges, improve existing ones, or fix bugs, check out our [Contributing Guide](https://jmcrafter26.github.io/badges/contributing).
 
 ### Quick Contributing Steps:
 1. Fork the repository
