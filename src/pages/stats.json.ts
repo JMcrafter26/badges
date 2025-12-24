@@ -8,7 +8,9 @@ export const GET: APIRoute = () => {
 	
 	assets.forEach((asset) => {
 		const [category] = asset.split('/');
-		badgesByCategory[category] = (badgesByCategory[category] || 0) + 1;
+		if (category) {
+			badgesByCategory[category] = (badgesByCategory[category] || 0) + 1;
+		}
 	});
 
 	// Calculate total variants (all sizes and formats)
