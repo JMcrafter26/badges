@@ -29,7 +29,7 @@ if(size.endsWith("minimal")) {
 
 const { default: badge } = await import(`../assets/${category}/${slug}/${size}.svg`);
 
-const baseUrl = `${import.meta.env.BASE_URL}badges/${originalCategory}/${slug}/${size}`;
+const baseUrl = `${import.meta.env.BASE_URL}/badges/${originalCategory}/${slug}/${size}`;
 const cdnBaseUrl = `https://cdn.jsdelivr.net/gh/JMcrafter26/devins-badges@main/src/assets/${originalCategory}/${slug}`;
 ---
 

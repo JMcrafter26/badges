@@ -14,5 +14,7 @@ export default defineConfig({
   prefetch: {
     prefetchAll: true
   },
-  integrations: [tailwind(), icon(), sitemap(), robotsTxt(), compress()]
+  integrations: [tailwind(), icon(), sitemap(), robotsTxt(), compress({
+    SVG: false // Skip SVG compression - badge files are already optimized
+  })]
 });

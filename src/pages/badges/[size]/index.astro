@@ -56,25 +56,25 @@ const filteredBadges = groupBy<BadgeDescriptor[], Category>(groupBy(badges, badg
 		<div class="p-4 bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-300 dark:border-zinc-700 rounded-lg">
 			<h3 class="text-base font-bold text-zinc-800 dark:text-zinc-100 mb-3">Badge Style</h3>
 			<div class="grid grid-cols-4 gap-3" id="style-switcher">
-				<a href={`${import.meta.env.BASE_URL}badges/cozy`} class={`style-link style-btn p-3 rounded-lg border-2 transition-all flex flex-col items-center gap-2 ${size === 'cozy' ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20' : 'border-zinc-300 dark:border-zinc-600 hover:border-blue-400 dark:hover:border-blue-500'}`}>
+				<a href={`${import.meta.env.BASE_URL}/badges/cozy`} class={`style-link style-btn p-3 rounded-lg border-2 transition-all flex flex-col items-center gap-2 ${size === 'cozy' ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20' : 'border-zinc-300 dark:border-zinc-600 hover:border-blue-400 dark:hover:border-blue-500'}`}>
 					<div class="flex items-center justify-center h-16">
 						<Image src={cozyBadge} alt="Cozy badge" class="w-auto max-h-full" />
 					</div>
 					<span class={`text-xs font-medium whitespace-nowrap ${size === 'cozy' ? 'text-blue-700 dark:text-blue-300' : 'text-zinc-700 dark:text-zinc-300'}`}>Cozy</span>
 				</a>
-				<a href={`${import.meta.env.BASE_URL}badges/compact`} class={`style-link style-btn p-3 rounded-lg border-2 transition-all flex flex-col items-center gap-2 ${size === 'compact' ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20' : 'border-zinc-300 dark:border-zinc-600 hover:border-blue-400 dark:hover:border-blue-500'}`}>
+				<a href={`${import.meta.env.BASE_URL}/badges/compact`} class={`style-link style-btn p-3 rounded-lg border-2 transition-all flex flex-col items-center gap-2 ${size === 'compact' ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20' : 'border-zinc-300 dark:border-zinc-600 hover:border-blue-400 dark:hover:border-blue-500'}`}>
 					<div class="flex items-center justify-center h-16">
 						<Image src={compactBadge} alt="Compact badge" class="w-auto max-h-full" />
 					</div>
 					<span class={`text-xs font-medium whitespace-nowrap ${size === 'compact' ? 'text-blue-700 dark:text-blue-300' : 'text-zinc-700 dark:text-zinc-300'}`}>Compact</span>
 				</a>
-				<a href={`${import.meta.env.BASE_URL}badges/cozy-minimal`} class={`style-link style-btn p-3 rounded-lg border-2 transition-all flex flex-col items-center gap-2 ${size === 'cozy-minimal' ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20' : 'border-zinc-300 dark:border-zinc-600 hover:border-blue-400 dark:hover:border-blue-500'}`}>
+				<a href={`${import.meta.env.BASE_URL}/badges/cozy-minimal`} class={`style-link style-btn p-3 rounded-lg border-2 transition-all flex flex-col items-center gap-2 ${size === 'cozy-minimal' ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20' : 'border-zinc-300 dark:border-zinc-600 hover:border-blue-400 dark:hover:border-blue-500'}`}>
 					<div class="flex items-center justify-center h-16">
 						<Image src={cozyMinimalBadge} alt="Cozy minimal badge" class="w-auto max-h-full" />
 					</div>
 					<span class={`text-xs font-medium whitespace-nowrap ${size === 'cozy-minimal' ? 'text-blue-700 dark:text-blue-300' : 'text-zinc-700 dark:text-zinc-300'}`}>Cozy Minimal</span>
 				</a>
-				<a href={`${import.meta.env.BASE_URL}badges/compact-minimal`} class={`style-link style-btn p-3 rounded-lg border-2 transition-all flex flex-col items-center gap-2 ${size === 'compact-minimal' ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20' : 'border-zinc-300 dark:border-zinc-600 hover:border-blue-400 dark:hover:border-blue-500'}`}>
+				<a href={`${import.meta.env.BASE_URL}/badges/compact-minimal`} class={`style-link style-btn p-3 rounded-lg border-2 transition-all flex flex-col items-center gap-2 ${size === 'compact-minimal' ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20' : 'border-zinc-300 dark:border-zinc-600 hover:border-blue-400 dark:hover:border-blue-500'}`}>
 					<div class="flex items-center justify-center h-16">
 						<Image src={compactMinimalBadge} alt="Compact minimal badge" class="w-auto max-h-full" />
 					</div>
