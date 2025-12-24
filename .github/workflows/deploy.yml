@@ -38,6 +38,16 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Restore build cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            dist
+            .astro
+          key: ${{ runner.os }}-astro-build-${{ hashFiles('src/**', 'public/**', 'astro.config.mts', 'package.json', 'pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-astro-build-
+
       - name: Build with Astro
         run: pnpm build
 
