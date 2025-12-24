@@ -10,7 +10,7 @@ import compress from "astro-compress";
 export default defineConfig({
   output: "static",
   site: "https://jmcrafter26.github.io/badges/",
-  base: "/devins-badges",
+  base: "/badges",
   prefetch: {
     prefetchAll: true
   },

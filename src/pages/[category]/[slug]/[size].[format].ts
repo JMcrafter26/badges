@@ -1,8 +1,8 @@
 import type { APIRoute } from 'astro';
 import { readFile } from "node:fs/promises";
-import { badges, heights } from '../../../../utils/badges';
-import { pathOverrides } from '../../../../utils/overrides';
-import type { Slug, Category, Format, Size } from '../../../../utils/types';
+import { badges, heights } from '../../../utils/badges';
+import { pathOverrides } from '../../../utils/overrides';
+import type { Slug, Category, Format, Size } from '../../../utils/types';
 import sharp from 'sharp';
 
 const formats: Record<Format, `image/${string}`> = {

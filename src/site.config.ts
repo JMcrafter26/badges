@@ -21,7 +21,7 @@ export const menuLinks: Array<{ title: string; path: string }> = [
 	},
 	{
 		title: "Badges",
-		path: "/badges/",
+		path: "/categories/",
 	},
 	{
 		title: "Contributing",

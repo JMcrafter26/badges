@@ -15,8 +15,8 @@
 	</p>
 	<p>
 		<img alt="Badge Count" src="https://img.shields.io/endpoint?url=https://jmcrafter26.github.io/badges/stats.json">
-		<img alt="GitHub Stars" src="https://img.shields.io/github/stars/JMcrafter26/devins-badges">
-		<img alt="GitHub License" src="https://img.shields.io/github/license/JMcrafter26/devins-badges">
+		<img alt="GitHub Stars" src="https://img.shields.io/github/stars/JMcrafter26/badges">
+		<img alt="GitHub License" src="https://img.shields.io/github/license/JMcrafter26/badges">
 	</p>
 </div>
 
@@ -33,30 +33,30 @@
 
 ### Browse Online
 
-Visit [jmcrafter26.github.io/devins-badges](https://jmcrafter26.github.io/badges/) to browse all available badges with live search and preview.
+Visit [jmcrafter26.github.io/badges](https://jmcrafter26.github.io/badges/) to browse all available badges with live search and preview.
 
 ### Use via CDN
 
 **GitHub Pages (Recommended):**
 ```
-https://jmcrafter26.github.io/badges/badges/[category]/[badge]/[size].[format]
+https://jmcrafter26.github.io/badges/[category]/[badge]/[size].[format]
 ```
 
 **jsDelivr (SVG source only):**
 ```
-https://cdn.jsdelivr.net/gh/JMcrafter26/devins-badges@main/src/assets/[category]/[badge]/[size].svg
+https://cdn.jsdelivr.net/gh/JMcrafter26/badges@main/src/assets/[category]/[badge]/[size].svg
 ```
 
 ### Examples
 
 **Markdown:**
 ```md
-![GitHub](https://jmcrafter26.github.io/badges/badges/available/github/cozy.svg)
+![GitHub](https://jmcrafter26.github.io/badges/available/github/cozy.svg)
 ```
 
 **HTML:**
 ```html
-<img alt="GitHub" src="https://jmcrafter26.github.io/badges/badges/available/github/cozy.png">
+<img alt="GitHub" src="https://jmcrafter26.github.io/badges/available/github/cozy.png">
 ```
 
 **Different formats:**

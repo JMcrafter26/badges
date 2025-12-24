@@ -1,18 +1,18 @@
 ---
-import PageLayout from "../../../layouts/Base.astro";
-import Badge from "../../../components/Badge.astro";
-import SearchBar from "../../../components/SearchBar.astro";
-import { groupBy } from "../../../utils/arrays";
-import { size as sizes, badges, heights } from "../../../utils/badges";
-import { categories } from "../../../utils/categories";
-import type { BadgeDescriptor, Category } from "../../../utils/types";
-import { capitalizeEachWord } from "../../../utils/strings";
+import PageLayout from "../../layouts/Base.astro";
+import Badge from "../../components/Badge.astro";
+import SearchBar from "../../components/SearchBar.astro";
+import { groupBy } from "../../utils/arrays";
+import { size as sizes, badges, heights } from "../../utils/badges";
+import { categories } from "../../utils/categories";
+import type { BadgeDescriptor, Category } from "../../utils/types";
+import { capitalizeEachWord } from "../../utils/strings";
 import { Image } from "astro:assets";
 
-import cozyBadge from "../../../assets/available/git/cozy.svg";
-import cozyMinimalBadge from "../../../assets/available/git/cozy-minimal.svg";
-import compactBadge from "../../../assets/available/git/compact.svg";
-import compactMinimalBadge from "../../../assets/available/git/compact-minimal.svg";
+import cozyBadge from "../../assets/available/git/cozy.svg";
+import cozyMinimalBadge from "../../assets/available/git/cozy-minimal.svg";
+import compactBadge from "../../assets/available/git/compact.svg";
+import compactMinimalBadge from "../../assets/available/git/compact-minimal.svg";
 
 export const prerender = true;
 export function getStaticPaths() {
@@ -56,25 +56,25 @@ const filteredBadges = groupBy<BadgeDescriptor[], Category>(groupBy(badges, badg
 		<div class="p-4 bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-300 dark:border-zinc-700 rounded-lg">
 			<h3 class="text-base font-bold text-zinc-800 dark:text-zinc-100 mb-3">Badge Style</h3>
 			<div class="grid grid-cols-4 gap-3" id="style-switcher">
-				<a href={`${import.meta.env.BASE_URL}/badges/cozy`} class={`style-link style-btn p-3 rounded-lg border-2 transition-all flex flex-col items-center gap-2 ${size === 'cozy' ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20' : 'border-zinc-300 dark:border-zinc-600 hover:border-blue-400 dark:hover:border-blue-500'}`}>
+				<a href={`${import.meta.env.BASE_URL}/cozy`} class={`style-link style-btn p-3 rounded-lg border-2 transition-all flex flex-col items-center gap-2 ${size === 'cozy' ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20' : 'border-zinc-300 dark:border-zinc-600 hover:border-blue-400 dark:hover:border-blue-500'}`}>
 					<div class="flex items-center justify-center h-16">
 						<Image src={cozyBadge} alt="Cozy badge" class="w-auto max-h-full" />
 					</div>
 					<span class={`text-xs font-medium whitespace-nowrap ${size === 'cozy' ? 'text-blue-700 dark:text-blue-300' : 'text-zinc-700 dark:text-zinc-300'}`}>Cozy</span>
 				</a>
-				<a href={`${import.meta.env.BASE_URL}/badges/compact`} class={`style-link style-btn p-3 rounded-lg border-2 transition-all flex flex-col items-center gap-2 ${size === 'compact' ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20' : 'border-zinc-300 dark:border-zinc-600 hover:border-blue-400 dark:hover:border-blue-500'}`}>
+				<a href={`${import.meta.env.BASE_URL}/compact`} class={`style-link style-btn p-3 rounded-lg border-2 transition-all flex flex-col items-center gap-2 ${size === 'compact' ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20' : 'border-zinc-300 dark:border-zinc-600 hover:border-blue-400 dark:hover:border-blue-500'}`}>
 					<div class="flex items-center justify-center h-16">
 						<Image src={compactBadge} alt="Compact badge" class="w-auto max-h-full" />
 					</div>
 					<span class={`text-xs font-medium whitespace-nowrap ${size === 'compact' ? 'text-blue-700 dark:text-blue-300' : 'text-zinc-700 dark:text-zinc-300'}`}>Compact</span>
 				</a>
-				<a href={`${import.meta.env.BASE_URL}/badges/cozy-minimal`} class={`style-link style-btn p-3 rounded-lg border-2 transition-all flex flex-col items-center gap-2 ${size === 'cozy-minimal' ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20' : 'border-zinc-300 dark:border-zinc-600 hover:border-blue-400 dark:hover:border-blue-500'}`}>
+				<a href={`${import.meta.env.BASE_URL}/cozy-minimal`} class={`style-link style-btn p-3 rounded-lg border-2 transition-all flex flex-col items-center gap-2 ${size === 'cozy-minimal' ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20' : 'border-zinc-300 dark:border-zinc-600 hover:border-blue-400 dark:hover:border-blue-500'}`}>
 					<div class="flex items-center justify-center h-16">
 						<Image src={cozyMinimalBadge} alt="Cozy minimal badge" class="w-auto max-h-full" />
 					</div>
 					<span class={`text-xs font-medium whitespace-nowrap ${size === 'cozy-minimal' ? 'text-blue-700 dark:text-blue-300' : 'text-zinc-700 dark:text-zinc-300'}`}>Cozy Minimal</span>
 				</a>
-				<a href={`${import.meta.env.BASE_URL}/badges/compact-minimal`} class={`style-link style-btn p-3 rounded-lg border-2 transition-all flex flex-col items-center gap-2 ${size === 'compact-minimal' ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20' : 'border-zinc-300 dark:border-zinc-600 hover:border-blue-400 dark:hover:border-blue-500'}`}>
+				<a href={`${import.meta.env.BASE_URL}/compact-minimal`} class={`style-link style-btn p-3 rounded-lg border-2 transition-all flex flex-col items-center gap-2 ${size === 'compact-minimal' ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20' : 'border-zinc-300 dark:border-zinc-600 hover:border-blue-400 dark:hover:border-blue-500'}`}>
 					<div class="flex items-center justify-center h-16">
 						<Image src={compactMinimalBadge} alt="Compact minimal badge" class="w-auto max-h-full" />
 					</div>
@@ -99,9 +99,9 @@ const filteredBadges = groupBy<BadgeDescriptor[], Category>(groupBy(badges, badg
 				You can obtain the URL for any badge by clicking on the format button beneath its name.
 			</p>
 			<pre class="bg-zinc-100 dark:bg-zinc-800 p-3 rounded-lg overflow-x-auto mb-3"><code class="text-sm text-zinc-800 dark:text-zinc-200">&lt;!-- HTML --&gt;
-&lt;img alt="badge name" src="https://jmcrafter26.github.io/badges/badges/[category]/[badge]/[size].&#123;png,svg&#125;"&gt;</code></pre>
+&lt;img alt="badge name" src="https://jmcrafter26.github.io/badges/[category]/[badge]/[size].&#123;png,svg&#125;"&gt;</code></pre>
 			<pre class="bg-zinc-100 dark:bg-zinc-800 p-3 rounded-lg overflow-x-auto"><code class="text-sm text-zinc-800 dark:text-zinc-200">&lt;!-- Markdown --&gt;
-![badge name]("https://jmcrafter26.github.io/badges/badges/[category]/[badge]/[size].&#123;png,svg&#125;")</code></pre>
+![badge name]("https://jmcrafter26.github.io/badges/[category]/[badge]/[size].&#123;png,svg&#125;")</code></pre>
 		</div>
 	</details>
 	<section class="mt-2">
@@ -336,7 +336,7 @@ const filteredBadges = groupBy<BadgeDescriptor[], Category>(groupBy(badges, badg
 			} else {
 				// Use local URL
 				const localBase = container.getAttribute('data-local-base');
-				url = `https://jmcrafter26.github.io/devins-badges${localBase}.${format}`;
+				url = `https://jmcrafter26.github.io/badges${localBase}.${format}`;
 			}
 			
 			// Copy to clipboard
