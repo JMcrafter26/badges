@@ -79,6 +79,7 @@ const builtWithAssets = [
 	'astro',
 	'autohotkey',
 	'azure-devops',
+	'bambulab',
 	'bepinhacks',
 	'bitbucket-pipelines',
 	'blazor',
