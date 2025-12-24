@@ -336,7 +336,7 @@ const filteredBadges = groupBy<BadgeDescriptor[], Category>(groupBy(badges, badg
 			} else {
 				// Use local URL
 				const localBase = container.getAttribute('data-local-base');
-				url = `https://jmcrafter26.github.io/badges${localBase}.${format}`;
+				url = `https://jmcrafter26.github.io${localBase}.${format}`;
 			}
 			
 			// Copy to clipboard

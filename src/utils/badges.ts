@@ -47,6 +47,7 @@ const availableAssets = [
 	'jwpepper', 
 	'livecodes',
 	'mac-app-store', 
+	'makerworld',
 	'maven-central', 
 	'modrinth', 
 	'modweaver', 
