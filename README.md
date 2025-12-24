@@ -4,41 +4,123 @@
 		<a href="https://jmcrafter26.github.io/devins-badges/"><img src="./src/assets/documentation/docs-rs/cozy-minimal.svg" width="256" alt="Fancy Badges"/></a>
 	</p>
 	<h1>Fancy Badges</h1>
-	<img alt="Deployed on Cloudflare Pages" src="./src/assets/built-with/cloudflare-pages/cozy.svg" />
-	<img alt="Built with Astro" src="./src/assets/built-with/astro/cozy.svg" />
-	<img alt="Built with TailwindCSS" src="./src/assets/built-with/tailwindcss/cozy.svg"/>
-	<img alt="Built with TypeScript" src="./src/assets/built-with/typescript/cozy.svg">
+	<p>
+		<img alt="GitHub Pages" src="./src/assets/built-with/github-pages/cozy.svg" />
+		<img alt="Built with Astro" src="./src/assets/built-with/astro/cozy.svg" />
+		<img alt="Built with TailwindCSS" src="./src/assets/built-with/tailwindcss/cozy.svg"/>
+		<img alt="Built with TypeScript" src="./src/assets/built-with/typescript/cozy.svg">
+	</p>
+	<p>
+		<a href="https://jmcrafter26.github.io/devins-badges/"><strong>Browse Badges →</strong></a>
+	</p>
+	<p>
+		<img alt="Badge Count" src="https://img.shields.io/endpoint?url=https://jmcrafter26.github.io/devins-badges/stats.json">
+		<img alt="GitHub Stars" src="https://img.shields.io/github/stars/JMcrafter26/devins-badges">
+		<img alt="GitHub License" src="https://img.shields.io/github/license/JMcrafter26/devins-badges">
+	</p>
 </div>
 
-## CDN
+## 🎨 Features
 
-Use via cdn 
+- **Hundreds of badges** across 9 categories
+- **4 style variants**: Cozy, Compact, Cozy Minimal, Compact Minimal
+- **6 image formats**: SVG, PNG, JPEG, JPG, WebP, AVIF
+- **Fast CDN delivery** via jsDelivr and GitHub Pages
+- **Easy integration** with Markdown, HTML, or direct URLs
+- **Searchable interface** to find the perfect badge
 
-[Explore CDN](https://cdn.jsdelivr.net/gh/JMcrafter26/devins-badges@main/src/assets/)
+## 🚀 Quick Start
 
-### Example
+### Browse Online
 
-<img alt="GitHub" src="https://cdn.jsdelivr.net/gh/JMcrafter26/devins-badges@main/src/assets/available/github/cozy.svg">
+Visit [jmcrafter26.github.io/devins-badges](https://jmcrafter26.github.io/devins-badges/) to browse all available badges with live search and preview.
 
+### Use via CDN
 
+**GitHub Pages (Recommended):**
 ```
-https://cdn.jsdelivr.net/gh/JMcrafter26/devins-badges@main/src/assets/available/github/cozy.svg
+https://jmcrafter26.github.io/devins-badges/badges/[category]/[badge]/[size].[format]
 ```
 
-HTML
-```html
-<img alt="badge name" src="https://cdn.jsdelivr.net/gh/JMcrafter26/devins-badges@main/src/assets/available/github/cozy.svg">
+**jsDelivr (SVG source only):**
+```
+https://cdn.jsdelivr.net/gh/JMcrafter26/devins-badges@main/src/assets/[category]/[badge]/[size].svg
 ```
 
-Markdown
+### Examples
+
+**Markdown:**
 ```md
-![badge name]("https://cdn.jsdelivr.net/gh/JMcrafter26/devins-badges@main/src/assets/available/github/cozy.svg")
+![GitHub](https://jmcrafter26.github.io/devins-badges/badges/available/github/cozy.svg)
 ```
 
-## About
+**HTML:**
+```html
+<img alt="GitHub" src="https://jmcrafter26.github.io/devins-badges/badges/available/github/cozy.png">
+```
 
-This is a fork of [Devin's Badges](https://intergrav.github.io/devins-badges-docs/) to continue maintaining and adding fancy badges that appeal to non-technical users
+**Different formats:**
+```
+.../github/cozy.svg     # Vector (recommended)
+.../github/cozy.png     # Raster (web optimized)
+.../github/cozy.webp    # Modern format
+```
 
-## Contributing
+## 📊 API & Stats
 
-We welcome all forms of contribution, however before contributing please read through our [contributing guide](https://jmcrafter26.github.io/devins-badges/contributing) and [code of conduct](.github/CODE_OF_CONDUCT.md).
+Get badge statistics in JSON format:
+```
+https://jmcrafter26.github.io/devins-badges/stats.json
+```
+
+Use with shields.io:
+```md
+![Badge Count](https://img.shields.io/endpoint?url=https://jmcrafter26.github.io/devins-badges/stats.json)
+```
+
+## 📁 Categories
+
+- **Available**: Where your project is available (App Store, GitHub, Docker Hub, etc.)
+- **Built With**: Technologies used (React, Python, Node.js, etc.)
+- **Documentation**: Where docs are hosted (ReadTheDocs, GitHub Pages, etc.)
+- **Donate**: Donation platforms (Patreon, Ko-fi, Buy Me a Coffee, etc.)
+- **Requires**: Required dependencies (Fabric API, Node.js, etc.)
+- **Social**: Social platforms (Discord, Twitter, Mastodon, etc.)
+- **Supported**: Supported platforms (Windows, Linux, Android, etc.)
+- **Translate**: Translation platforms (Crowdin, Weblate, etc.)
+- **Unsupported**: Explicitly unsupported platforms
+
+## 🎨 Style Variants
+
+| Style | Description | Best For |
+|-------|-------------|----------|
+| **Cozy** | Large two-line badges | Maximum visibility |
+| **Compact** | Single-line badges | Space-efficient |
+| **Cozy Minimal** | Icon-only (large) | Clean, modern look |
+| **Compact Minimal** | Icon-only (small) | Subtle branding |
+
+## 🤝 Contributing
+
+We welcome contributions! Whether you want to add new badges, improve existing ones, or fix bugs, check out our [Contributing Guide](https://jmcrafter26.github.io/devins-badges/contributing).
+
+### Quick Contributing Steps:
+1. Fork the repository
+2. Add your badge SVGs to `src/assets/[category]/[badge-name]/`
+3. Register the badge in `src/utils/badges.ts`
+4. Submit a pull request
+
+See our [Code of Conduct](.github/CODE_OF_CONDUCT.md) for community guidelines.
+
+## 📜 About
+
+This is a maintained fork of [Devin's Badges](https://intergrav.github.io/devins-badges-docs/) aimed at continuing development and adding fancy badges that appeal to both technical and non-technical users.
+
+## 📄 License
+
+This project is licensed under the terms specified in the [LICENSE](LICENSE) file.
+
+---
+
+<div align="center">
+	<sub>Made with ❤️ by the community</sub>
+</div>

@@ -15,6 +15,7 @@ export default defineConfig({
     prefetchAll: true
   },
   integrations: [tailwind(), icon(), sitemap(), robotsTxt(), compress({
-    SVG: false // Skip SVG compression - badge files are already optimized
+    SVG: false, // Skip SVG compression - badge files are already optimized
+    Image: false // Skip PNG/JPEG/WebP compression - Sharp already handles this
   })]
 });
