@@ -160,6 +160,7 @@ const builtWithAssets = [
 	'unreal-engine',
 	'vercel',
 	'vite',
+	'vitepress',
 	'vue',
 	'vuejs',
 	'wails',
