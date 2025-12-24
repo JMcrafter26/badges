@@ -59,6 +59,7 @@ const availableAssets = [
 	'railway',
 	'replit',
 	'rubygems',
+	'sora-module-library',
 	'soundcloud',
 	'sourceforge',
 	'spotify',
