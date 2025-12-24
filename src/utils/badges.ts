@@ -67,6 +67,7 @@ const availableAssets = [
 	'spotify',
 	'stackblitz', 
 	'steam',
+	'thingiverse',
 	'visual-studio-marketplace',
 ] as const;
 
