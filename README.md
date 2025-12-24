@@ -38,29 +38,34 @@ Visit [jmcrafter26.github.io/badges](https://jmcrafter26.github.io/badges/) to b
 ### Use via CDN
 
 **GitHub Pages (Recommended):**
-```
+
+```url
 https://jmcrafter26.github.io/badges/[category]/[badge]/[size].[format]
 ```
 
 **jsDelivr (SVG source only):**
-```
+
+```url
 https://cdn.jsdelivr.net/gh/JMcrafter26/badges@main/src/assets/[category]/[badge]/[size].svg
 ```
 
 ### Examples
 
 **Markdown:**
+
 ```md
 ![GitHub](https://jmcrafter26.github.io/badges/available/github/cozy.svg)
 ```
 
 **HTML:**
+
 ```html
 <img alt="GitHub" src="https://jmcrafter26.github.io/badges/available/github/cozy.png">
 ```
 
 **Different formats:**
-```
+
+```url
 .../github/cozy.svg     # Vector (recommended)
 .../github/cozy.png     # Raster (web optimized)
 .../github/cozy.webp    # Modern format
@@ -69,11 +74,13 @@ https://cdn.jsdelivr.net/gh/JMcrafter26/badges@main/src/assets/[category]/[badge
 ## 📊 API & Stats
 
 Get badge statistics in JSON format:
-```
+
+```url
 https://jmcrafter26.github.io/badges/stats.json
 ```
 
 Use with shields.io:
+
 ```md
 ![Badge Count](https://img.shields.io/endpoint?url=https://jmcrafter26.github.io/badges/stats.json)
 ```
@@ -93,7 +100,7 @@ Use with shields.io:
 ## 🎨 Style Variants
 
 | Style | Description | Best For |
-|-------|-------------|----------|
+| ------- | ------------- | ---------- |
 | **Cozy** | Large two-line badges | Maximum visibility |
 | **Compact** | Single-line badges | Space-efficient |
 | **Cozy Minimal** | Icon-only (large) | Clean, modern look |
@@ -103,7 +110,8 @@ Use with shields.io:
 
 We welcome contributions! Whether you want to add new badges, improve existing ones, or fix bugs, check out our [Contributing Guide](https://jmcrafter26.github.io/badges/contributing).
 
-### Quick Contributing Steps:
+### Quick Contributing Steps
+
 1. Fork the repository
 2. Add your badge SVGs to `src/assets/[category]/[badge-name]/`
 3. Register the badge in `src/utils/badges.ts`
