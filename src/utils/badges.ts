@@ -30,6 +30,7 @@ const availableAssets = [
 	'f-droid',
 	'firefox-addons',
 	'flathub',
+	'fmhy',
 	'git', 
 	'gitea', 
 	'github', 
