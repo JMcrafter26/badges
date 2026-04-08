@@ -4,7 +4,7 @@ import tailwind from "@astrojs/tailwind";
 import icon from "astro-icon";
 import robotsTxt from "astro-robots-txt";
 
-import compress from "@playform/compress";
+import compress from "astro-compress";
 
 // https://astro.build/config
 export default defineConfig({
