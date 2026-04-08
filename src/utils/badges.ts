@@ -98,6 +98,7 @@ const builtWithAssets = [
 	'cpp',
 	'csharp',
 	'd3',
+	'daisyui',
 	'dart',
 	'discord-js',
 	'docker',
