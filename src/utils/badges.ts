@@ -70,6 +70,7 @@ const availableAssets = [
 	'steam',
 	'thingiverse',
 	'visual-studio-marketplace',
+	'wotaku',
 ] as const;
 
 const builtWithAssets = [
