@@ -26,6 +26,7 @@ const availableAssets = [
 	'digitalocean-marketplace',
 	'discord-bot',
 	'docker-hub',
+	'edge-addons',
 	'epic-games', 
 	'f-droid',
 	'firefox-addons',
