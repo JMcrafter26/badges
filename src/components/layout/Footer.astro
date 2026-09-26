@@ -24,7 +24,7 @@ const commit = import.meta.env.CF_PAGES_COMMIT_SHA ?? '@next';
 		{
 			menuLinks.map((link) => (
 				<a
-					href={link.path}
+					href={link.path.startsWith('http') ? link.path : link.path === '/' ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/${link.path.replace(/^\//, '')}`}
 					class="px-4 py-2 sm:px-2 sm:py-0 sm:hover:text-textColor sm:hover:underline"
 				>
 					{link.title}
