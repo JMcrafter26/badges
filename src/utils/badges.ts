@@ -56,6 +56,7 @@ const availableAssets = [
 	'nexusmods', 
 	'npm', 
 	'nuget',
+	'opera-addons',
 	'polymart', 
 	'printables',
 	'pypi',
