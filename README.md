@@ -1,23 +1,25 @@
+<!-- markdownlint-disable MD033 -->
+<!-- markdownlint-disable MD041 -->
 <div align="center">
-	<br />
-	<p>
-		<a href="https://jmcrafter26.github.io/badges/"><img src="./src/assets/documentation/docs-rs/cozy-minimal.svg" width="256" alt="Fancy Badges"/></a>
-	</p>
-	<h1>Fancy Badges</h1>
-	<p>
-		<img alt="GitHub Pages" src="./src/assets/built-with/github-pages/cozy.svg" />
-		<img alt="Built with Astro" src="./src/assets/built-with/astro/cozy.svg" />
-		<img alt="Built with TailwindCSS" src="./src/assets/built-with/tailwindcss/cozy.svg"/>
-		<img alt="Built with TypeScript" src="./src/assets/built-with/typescript/cozy.svg">
-	</p>
-	<p>
-		<a href="https://jmcrafter26.github.io/badges/"><strong>Browse Badges →</strong></a>
-	</p>
-	<p>
-		<img alt="Badge Count" src="https://img.shields.io/endpoint?url=https://jmcrafter26.github.io/badges/stats.json">
-		<img alt="GitHub Stars" src="https://img.shields.io/github/stars/JMcrafter26/badges">
-		<img alt="GitHub License" src="https://img.shields.io/github/license/JMcrafter26/badges">
-	</p>
+ <br />
+ <p>
+  <a href="https://jmcrafter26.github.io/badges/"><img src="./src/assets/documentation/docs-rs/cozy-minimal.svg" width="256" alt="Fancy Badges"/></a>
+ </p>
+ <h1>Fancy Badges</h1>
+ <p>
+  <img alt="GitHub Pages" src="./src/assets/built-with/github-pages/cozy.svg" />
+  <img alt="Built with Astro" src="./src/assets/built-with/astro/cozy.svg" />
+  <img alt="Built with TailwindCSS" src="./src/assets/built-with/tailwindcss/cozy.svg"/>
+  <img alt="Built with TypeScript" src="./src/assets/built-with/typescript/cozy.svg">
+ </p>
+ <p>
+  <a href="https://jmcrafter26.github.io/badges/"><strong>Browse Badges →</strong></a>
+ </p>
+ <p>
+  <img alt="Badge Count" src="https://img.shields.io/endpoint?url=https://jmcrafter26.github.io/badges/stats.json">
+  <img alt="GitHub Stars" src="https://img.shields.io/github/stars/JMcrafter26/badges">
+  <img alt="GitHub License" src="https://img.shields.io/github/license/JMcrafter26/badges">
+ </p>
 </div>
 
 ## 🎨 Features
@@ -113,9 +115,10 @@ We welcome contributions! Whether you want to add new badges, improve existing o
 ### Quick Contributing Steps
 
 1. Fork the repository
-2. Add your badge SVGs to `src/assets/[category]/[badge-name]/`
-3. Register the badge in `src/utils/badges.ts`
-4. Submit a pull request
+2. Use the `template/devinsbadges-template.figma` Figma file to design your badge
+3. Add your badge SVGs to `src/assets/[category]/[badge-name]/`
+4. Register the badge in `src/utils/badges.ts`
+5. Submit a pull request
 
 See our [Code of Conduct](.github/CODE_OF_CONDUCT.md) for community guidelines.
 
@@ -130,5 +133,5 @@ This project is licensed under the terms specified in the [LICENSE](LICENSE) fil
 ---
 
 <div align="center">
-	<sub>Made with ❤️ by the community</sub>
+ <sub>Made with ❤️ by the community</sub>
 </div>
