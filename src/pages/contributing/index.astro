@@ -1,5 +1,8 @@
 ---
 import PageLayout from "../../layouts/Base.astro"
+import { Image } from "astro:assets";
+
+import exampleCommit from "../../assets/other-assets/example-commit.png";
 ---
 
 <PageLayout meta={{ title: "Contributing" }}>
@@ -89,6 +92,13 @@ const [category]Assets = [] as const;</code></pre>
 					If you need to override the automatically generated name, you can edit the switch statement in <code class="inline">src/utils/overrides.ts</code> to modify the project name. Add your new case based upon where it falls where it is rendered on the page.
 				</li>
 			</ol>
+				<p class="mt-4 text-lg text-zinc-800 dark:text-zinc-100">
+					After you have completed these steps, submit a pull request with your changes. Once it is approved, your badge will be available for use!
+				</p>
+				<p>Example of how the commit should look when submitting a new badge:</p>
+			<div class="flex justify-center mt-4">
+				<Image src={exampleCommit} alt="Example commit" class="w-200 h-auto" />
+			</div>
 		</p>
 	</section>
 </PageLayout>
