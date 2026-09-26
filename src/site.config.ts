@@ -9,7 +9,7 @@ export type SiteConfig = {
 export const siteConfig: SiteConfig = {
 	author: "Cufiy",
 	title: "Fancy Badges",
-	description: "A maintained fork of a fork of Devin's badges",
+	description: "A maintained fork of Devin's badges",
 	lang: "en-GB",
 	ogLocale: "en_GB",
 };
@@ -27,4 +27,8 @@ export const menuLinks: Array<{ title: string; path: string }> = [
 		title: "Contributing",
 		path: "/contributing/",
 	},
+	{
+		title: "GitHub",
+		path: "https://github.com/JMcrafter26/badges"
+	}
 ];
