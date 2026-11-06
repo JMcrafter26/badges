@@ -42,7 +42,7 @@ const filteredBadges = groupBy<BadgeDescriptor[], Category>(groupBy(badges, badg
 		<div class="flex items-center justify-between p-4 bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-300 dark:border-zinc-700 rounded-lg">
 			<div>
 				<h3 class="text-base font-bold text-zinc-800 dark:text-zinc-100">Use CDN URLs</h3>
-				<p class="text-sm text-zinc-600 dark:text-zinc-400 mt-0.5">jsdelivr CDN for SVG format (no custom sizes)</p>
+				<p class="text-sm text-zinc-600 dark:text-zinc-400 mt-0.5">jsdelivr CDN for SVG format (no custom formats)</p>
 			</div>
 			<label class="relative inline-flex items-center cursor-pointer">
 				<input type="checkbox" id="cdn-toggle" class="sr-only peer" checked>
@@ -96,12 +96,21 @@ const filteredBadges = groupBy<BadgeDescriptor[], Category>(groupBy(badges, badg
 				By default these badges are <code class="inline px-1.5 py-0.5 bg-zinc-200 dark:bg-zinc-700 rounded">{heights[size]}px</code> tall.
 			</p>
 			<p class="mb-3">
-				You can obtain the URL for any badge by clicking on the format button beneath its name.
+				Use the <strong>Use CDN URLs</strong> toggle to choose between jsDelivr CDN URLs and the site's URLs. The format buttons copy a direct URL; when the CDN is enabled, only SVG uses jsDelivr because the CDN provides the original SVG assets. PNG, JPEG, WebP, and AVIF always use the site's generated URLs.
 			</p>
-			<pre class="bg-zinc-100 dark:bg-zinc-800 p-3 rounded-lg overflow-x-auto mb-3"><code class="text-sm text-zinc-800 dark:text-zinc-200">&lt;!-- HTML --&gt;
-&lt;img alt="badge name" src="https://jmcrafter26.github.io/badges/[category]/[badge]/[size].&#123;png,svg&#125;"&gt;</code></pre>
-			<pre class="bg-zinc-100 dark:bg-zinc-800 p-3 rounded-lg overflow-x-auto"><code class="text-sm text-zinc-800 dark:text-zinc-200">&lt;!-- Markdown --&gt;
-![badge name]("https://jmcrafter26.github.io/badges/[category]/[badge]/[size].&#123;png,svg&#125;")</code></pre>
+			<p class="mb-3">
+				The Markdown and HTML buttons copy an SVG snippet and follow the same CDN setting. The example below shows the currently active URL mode.
+			</p>
+			<pre data-usage-mode="site" class="usage-example bg-zinc-100 dark:bg-zinc-800 p-3 rounded-lg overflow-x-auto mb-3"><code class="text-sm text-zinc-800 dark:text-zinc-200">&lt;!-- HTML --&gt;
+&lt;img alt="badge name" src="https://jmcrafter26.github.io/badges/[category]/[badge]/[size].svg"&gt;
+
+&lt;!-- Markdown --&gt;
+![badge name](https://jmcrafter26.github.io/badges/[category]/[badge]/[size].svg)</code></pre>
+			<pre data-usage-mode="cdn" class="usage-example hidden bg-zinc-100 dark:bg-zinc-800 p-3 rounded-lg overflow-x-auto"><code class="text-sm text-zinc-800 dark:text-zinc-200">&lt;!-- HTML --&gt;
+&lt;img alt="badge name" src="https://cdn.jsdelivr.net/gh/JMcrafter26/badges@main/src/assets/[category]/[badge]/[size].svg"&gt;
+
+&lt;!-- Markdown --&gt;
+![badge name](https://cdn.jsdelivr.net/gh/JMcrafter26/badges@main/src/assets/[category]/[badge]/[size].svg)</code></pre>
 		</div>
 	</details>
 	<section class="mt-2">
@@ -307,11 +316,20 @@ const filteredBadges = groupBy<BadgeDescriptor[], Category>(groupBy(badges, badg
 		if(cdnToggle) {
 			cdnToggle.checked = savedCDN !== 'false'; // Default to true
 		}
+		updateUsageExample();
 		
 		// Handle toggle change
 		if(cdnToggle) {
 			cdnToggle.addEventListener('change', () => {
 				localStorage.setItem('useCDN', cdnToggle.checked.toString());
+				updateUsageExample();
+			});
+		}
+
+		function updateUsageExample() {
+			const activeMode = cdnToggle?.checked !== false ? 'cdn' : 'site';
+			document.querySelectorAll<HTMLElement>('.usage-example').forEach(example => {
+				example.classList.toggle('hidden', example.dataset.usageMode !== activeMode);
 			});
 		}
 		
@@ -322,25 +340,32 @@ const filteredBadges = groupBy<BadgeDescriptor[], Category>(groupBy(badges, badg
 			
 			const button = target.closest('.url-copy-btn') as HTMLElement;
 			if (!button) return;
-			const format = button.getAttribute('data-format');
 			const container = button.closest('.badge-container') as HTMLElement;
 			if (!container) return;
 			
 			// Check current toggle state
 			const useCDN = cdnToggle ? cdnToggle.checked : true;
+			const copyType = button.getAttribute('data-copy-type');
+			const format = button.getAttribute('data-format');
+			const requestedFormat = copyType ? 'svg' : format;
 			
 			let url;
-			if(format === 'svg' && useCDN) {
+			if(requestedFormat === 'svg' && useCDN) {
 				// Use CDN URL for SVG
 				url = container.getAttribute('data-cdn-url');
-			} else {
+			} else if(requestedFormat) {
 				// Use local URL
 				const localBase = container.getAttribute('data-local-base');
-				url = `https://jmcrafter26.github.io${localBase}.${format}`;
+				url = `${window.location.origin}${localBase}.${requestedFormat}`;
 			}
 			
 			// Copy to clipboard
 			if (!url) return;
+			if(copyType === 'markdown') {
+				url = `![${container.getAttribute('data-badge-name') || 'badge'}](${url})`;
+			} else if(copyType === 'html') {
+				url = `<img alt="${container.getAttribute('data-badge-name') || 'badge'}" src="${url}">`;
+			}
 			navigator.clipboard.writeText(url).then(() => {
 				// Show feedback
 				const originalText = button.innerHTML;

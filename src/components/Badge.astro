@@ -33,21 +33,37 @@ const baseUrl = `${import.meta.env.BASE_URL}/${originalCategory}/${slug}/${size}
 const cdnBaseUrl = `https://cdn.jsdelivr.net/gh/JMcrafter26/badges@main/src/assets/${originalCategory}/${slug}`;
 ---
 
-<div class="my-4 grid grid-cols-1 badge-container" data-cdn-url={`${cdnBaseUrl}/${size}.svg`} data-local-base={baseUrl}>
+<div class="my-4 grid grid-cols-1 badge-container" data-badge-name={name} data-cdn-url={`${cdnBaseUrl}/${size}.svg`} data-local-base={baseUrl}>
+	<a href={baseUrl + '.svg'} target="_blank" rel="noopener noreferrer" class="mb-3 max-h-16 place-self-center">
 	<Image src={badge} alt={name} height={heights[size]} class="mb-3 max-h-16 place-self-center pointer-events-none"  />
+	</a>
 	<p class="text-center">
 		<b class="text-xl text-zinc-900 dark:text-zinc-100 ">{name}</b>
-		<br/>
-		<button class="url-copy-btn text-blue-500 hover:text-blue-600 cursor-pointer" data-format="svg">
-			<b class="text-md">SVG</b>
-		</button>
-		{format.slice(1).filter(format => format !== 'jpg').map(format => (
-			<>
-				<span>•</span>
-				<button class="url-copy-btn text-blue-500 hover:text-blue-600 cursor-pointer" data-format={format}>
-					<b class="text-md">{format.toUpperCase()}</b>
-				</button>
-			</>
-		))}
 	</p>
+	<div class="mt-3 flex flex-wrap justify-center gap-2">
+		<button class="url-copy-btn text-blue-500 hover:text-blue-600 cursor-pointer" data-copy-type="markdown">
+			<!-- <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-4 w-4"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16V4a2 2 0 0 1 2-2h10"/></svg> -->
+			<b class="text-md">Markdown</b>
+		</button>
+		<button class="url-copy-btn text-blue-500 hover:text-blue-600 cursor-pointer" data-copy-type="html">
+			<!-- <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-4 w-4"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16V4a2 2 0 0 1 2-2h10"/></svg> -->
+			<b class="text-md">HTML</b>
+		</button>
+	</div>
+	<details class="mt-3 text-center">
+		<summary class="cursor-pointer text-sm font-medium text-blue-500 hover:text-blue-600">Formats</summary>
+		<div class="mt-2 flex flex-wrap justify-center gap-x-2 gap-y-1">
+			<button class="url-copy-btn text-blue-500 hover:text-blue-600 cursor-pointer" data-format="svg">
+				<b class="text-md">	SVG</b>
+			</button>
+			{format.slice(1).filter(format => format !== 'jpg').map(format => (
+				<>
+					<span>•</span>
+					<button class="url-copy-btn text-blue-500 hover:text-blue-600 cursor-pointer" data-format={format}>
+						<b class="text-md">{format.toUpperCase()}</b>
+					</button>
+				</>
+			))}
+		</div>
+	</details>
 </div>
